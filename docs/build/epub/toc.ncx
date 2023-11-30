@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<ncx version="2005-1" xmlns="http://www.daisy.org/z3986/2005/ncx/">
+  <head>
+    <meta name="dtb:uid" content="unknown"/>
+    <meta name="dtb:depth" content="2"/>
+    <meta name="dtb:totalPageCount" content="0"/>
+    <meta name="dtb:maxPageNumber" content="0"/>
+  </head>
+  <docTitle>
+    <text>Gestor de Contactos</text>
+  </docTitle>
+  <navMap>    
+    <navPoint id="navPoint1" playOrder="1">
+      <navLabel>
+        <text>Bienvenido a la documentacion del Gestor de Contactos!</text>
+      </navLabel>
+      <content src="index.xhtml" />  
+    </navPoint>
+    <navPoint id="navPoint2" playOrder="2">
+      <navLabel>
+        <text>Uso</text>
+      </navLabel>
+      <content src="uso.xhtml" />  
+      <navPoint id="navPoint3" playOrder="2">
+        <navLabel>
+          <text>Uso</text>
+        </navLabel>
+        <content src="uso.xhtml" />  
+      </navPoint>
+      <navPoint id="navPoint4" playOrder="3">
+        <navLabel>
+          <text>Instalación</text>
+        </navLabel>
+        <content src="uso.xhtml#instalacion" />  
+      </navPoint>
+      <navPoint id="navPoint5" playOrder="4">
+        <navLabel>
+          <text>¿Cómo abrir la aplicación?</text>
+        </navLabel>
+        <content src="uso.xhtml#como-abrir-la-aplicacion" />  
+      </navPoint>
+      <navPoint id="navPoint6" playOrder="5">
+        <navLabel>
+          <text>¿Cómo se usa?</text>
+        </navLabel>
+        <content src="uso.xhtml#como-se-usa" />  
+      </navPoint>
+    </navPoint>
+    <navPoint id="navPoint7" playOrder="6">
+      <navLabel>
+        <text>Estructura</text>
+      </navLabel>
+      <content src="estructura.xhtml" />  
+      <navPoint id="navPoint8" playOrder="6">
+        <navLabel>
+          <text>Estructura</text>
+        </navLabel>
+        <content src="estructura.xhtml" />  
+      </navPoint>
+      <navPoint id="navPoint9" playOrder="7">
+        <navLabel>
+          <text>Modelo</text>
+        </navLabel>
+        <content src="estructura.xhtml#modelo" />  
+      </navPoint>
+      <navPoint id="navPoint10" playOrder="8">
+        <navLabel>
+          <text>Vista</text>
+        </navLabel>
+        <content src="estructura.xhtml#vista" />  
+      </navPoint>
+      <navPoint id="navPoint11" playOrder="9">
+        <navLabel>
+          <text>Controlador</text>
+        </navLabel>
+        <content src="estructura.xhtml#controlador" />  
+      </navPoint>
+      <navPoint id="navPoint12" playOrder="10">
+        <navLabel>
+          <text>Expresiones</text>
+        </navLabel>
+        <content src="estructura.xhtml#expresiones" />  
+      </navPoint>
+    </navPoint>
+  </navMap>
+</ncx>

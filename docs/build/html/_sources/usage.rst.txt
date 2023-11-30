@@ -1,0 +1,10 @@
+Usage
+=====
+Instalación
+------------
+
+Si deseas descargar el proyecto, abre la terminal y ejecuta el siguiente comando:
+
+.. code-block:: console
+
+    $ git clone https://github.com/Sebastian-Sanchez-Bentolila/Gestor-Contactos
