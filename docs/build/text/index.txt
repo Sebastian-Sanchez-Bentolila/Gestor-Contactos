@@ -1,0 +1,50 @@
+Bienvenido a la documentación del “Gestor de Contactos”!
+********************************************************
+
+Bienvenido a la documentación de My Project. Esta documentación
+proporciona información detallada sobre la estructura, funcionalidad y
+uso del proyecto My Project.
+
+
+Contenidos
+^^^^^^^^^^
+
+* Creador
+
+  * Habilidades
+
+  * Sobre mí
+
+* Introducción
+
+* Instalación
+
+* Uso
+
+* Estructura del Proyecto
+
+* Modulos y Requerimientos
+
+  * Requerimientos
+
+  * Expresiones
+
+* MVC (Modelo-Vista-Controlador)
+
+  * Modelo
+
+  * Vista
+
+  * Controlador
+
+* Patrón Observador
+
+* Arquitectura de Red (Cliente-Servidor)
+
+  * Servidor
+
+  * Cliente
+
+Nota:
+
+  Este proyecto está en desarrollo activo.

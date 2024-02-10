@@ -1,0 +1,726 @@
+
+
+<!DOCTYPE html>
+<html class="no-js" lang="es">
+  <head>
+    <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="docsearch:name" content="Gestor de Contactos" />
+    <meta name="docsearch:package_type" content="" />
+    <meta name="docsearch:release" content="0.1" />
+    <meta name="docsearch:version" content="" />
+    
+      <title>MVC (Modelo-Vista-Controlador) &mdash; documentación de Gestor de Contactos - 0.1</title>
+    
+    <link rel="stylesheet" href="_static/bootstrap-icons.css" type="text/css" />
+          <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=83e35b93" />
+          <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="_static/pygments_dark.css?v=b20cc3f5" />
+          <link rel="stylesheet" type="text/css" href="_static/colorsets\sphinx-nefertiti.min.css?v=e96129fb" />
+          <link rel="stylesheet" type="text/css" href="_static/fonts\nunito\stylesheet.css?v=0ed606bc" />
+          <link rel="stylesheet" type="text/css" href="_static/fonts\red-hat-mono\stylesheet.css?v=4eee5046" />
+          <link rel="stylesheet" type="text/css" href="_static/pygments_dark.css?v=b20cc3f5" />
+        <link rel="index" title="Índice" href="genindex.html" />
+        <link rel="search" title="Búsqueda" href="search.html" />
+        <link rel="top" title="documentación de Gestor de Contactos - 0.1" href="#" />
+        <link rel="next" title="Patrón Observador" href="observador.html" />
+        <link rel="prev" title="Modulos y Requerimientos" href="modulos.html" />
+    <style>
+      :root {
+        --nftt-body-font-family: "Nunito", var(--nftt-font-sans-serif) !important;
+        --nftt-font-monospace: "Red Hat Mono", var(--nftt-font-family-monospace) !important;
+        --nftt-project-name-font: var(--nftt-body-font-family);
+        --nftt-documentation-font: var(--nftt-body-font-family);
+        --nftt-doc-headers-font: "Georgia", var(--nftt-documentation-font);}
+      h1 *, h2 *, h3 *, h4 *, h5 *, h6 * { font-size: inherit; }
+    </style>
+  </head>
+  <body>
+    <header class="navbar navbar-expand-lg navbar-dark nftt-navbar flex-column fixed-top">
+      <div class="skip-links container-xxl visually-hidden-focusable overflow-hidden justify-content-start">
+        <div class="border-bottom mb-2 pb-2 w-100">
+          <a class="d-none d-md-inline-flex p-2 m-1" href="#sidebar-filter">Skip to docs navigation</a>
+          <a class="d-inline-flex p-2 m-1" href="#content">Skip to main content</a>
+        </div>
+      </div>
+      <nav class="container-xxl nftt-gutter flex-wrap flex-lg-nowrap" aria-label="Main navigation">
+        <div class="nftt-navbar-toggler">
+          <button class="navbar-toggler p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="sidebar" aria-label="Toggle documentation navigation">
+            <i class="bi bi-list"></i>
+          </button>
+        </div>
+          <a href="index.html"
+              
+              class="navbar-brand p-0 me-0 md-lg-2"
+          ><span class="brand-text">Gestor de Contactos</span></a>
+        
+        <div class="d-flex d-lg-none">
+          <button class="navbar-toggler p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#nfttSearch" aria-controls="nfttSearch" aria-label="Search">
+            <i class="bi bi-search"></i>
+          </button>
+          <button class="navbar-toggler p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#nfttNavbar" aria-controls="nfttNavbar" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+        </div>
+        
+<div class="offcanvas-lg offcanvas-end flex-grow-1" tabindex="-1" id="nfttSearch" aria-labelledby="nfttSearchOffcanvasLabel" data-bs-scroll="true">
+  <div class="offcanvas-header px-4 pb-0">
+    <h5 class="offcanvas-title fw-bold" id="nfttSearchOffcanvasLabel">Search the documentation</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#nfttSearch"></button>
+  </div>
+  <div class="offcanvas-body p-4 pt-0 p-lg-0 px-lg-3">
+    <hr class="d-lg-none text-white-50">
+    <ul class="navbar-nav flex-row align-items-center flex-wrap ms-md-auto">
+      <li class="nav-item col-12 col-lg-auto">
+        <form id="nftt-search-form" action="search.html" method="get">
+          <div class="input-group">
+            <input type="text" name="q" class="form-control" placeholder="Search docs" aria-label="Search" aria-describedby="button-search">
+            <input type="hidden" name="check_keywords" value="yes" />
+            <input type="hidden" name="area" value="default" />
+            <button class="btn btn-primary" type="submit" id="button-search" aria-label="Search"><i class="bi bi-search"></i></button>
+          </div>
+        </form>
+      </li>
+    </ul>
+  </div>
+</div>
+
+        <div class="offcanvas-lg offcanvas-end" tabindex="-1" id="nfttNavbar" aria-labelledby="nfttNavbarOffcanvasLabel" data-bs-scroll="true">
+          <div class="offcanvas-header px-4 pb-0">
+            <div class="offcanvas-title text-white fw-bold" id="nfttNavbarOffcanvasLabel"><span class="brand-text">Nefertiti for Sphinx</span></div>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#nfttNavbar"></button>
+          </div>
+          <div class="offcanvas-body p-4 pt-0 p-lg-0">
+            <hr class="d-lg-none text-white-50">
+            <ul class="navbar-nav flex-row align-items-center flex-wrap ms-md-auto">
+              
+              <!-- version_dropdown.html -->
+
+              
+              <!-- colorscheme_dropdown.html -->
+<li class="nav-item dropdown">
+  <a class="nav-link d-flex py-2 px-0 px-lg-2 dropdown-toggle align-items-center" id="snftt-luz" href="#" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false" aria-label="Toggle light/dark">
+    <i class="bi bi-circle-half" data-snftt-luz-icon-active></i>
+    <span id="snftt-luz-text" class="d-lg-none small ms-2">Toggle light/dark</span>
+  </a>
+  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="snftt-luz-text">
+    <li>
+      <h6 class="dropdown-header">Light/dark</h6>
+    </li>
+    <li>
+      <a class="dropdown-item d-flex align-items-center" data-snftt-luz="light" href="#" aria-pressed="false">
+        <span class="small">
+          <i class="bi bi-sun" data-snftt-luz-icon="light"></i>
+        </span>
+        <span class="small ms-3">Light</span>
+        <i class="bi bi-check ms-auto"></i>
+      </a>
+    </li>
+    <li>
+      <a class="dropdown-item d-flex align-items-center" data-snftt-luz="dark" href="#" aria-pressed="false">
+        <span class="small">
+          <i class="bi bi-moon-stars" data-snftt-luz-icon="dark"></i>
+        </span>
+        <span class="small ms-3">Dark</span>
+        <i class="bi bi-check ms-auto"></i>
+      </a>
+    </li>
+    <li>
+      <a class="dropdown-item current d-flex align-items-center" data-snftt-luz="default" href="#" aria-pressed="false">
+        <span class="small">
+          <i class="bi bi-circle-half" data-snftt-luz-icon="default"></i>
+        </span>
+        <span class="small ms-3">Default</span>
+        <i class="bi bi-check ms-auto"></i>
+      </a>
+    </li>
+  </ul>
+</li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <div class="container-xxl nftt-gutter nftt-layout">
+      <aside class="nftt-sidebar">
+        <div class="title d-none d-md-block">
+          <i class="bi bi-book"></i>&nbsp;&nbsp;<span>Table of contents</span>
+        </div>
+        <div id="sidebar" tabindex="-1" class="offcanvas-lg offcanvas-start" aria-labelledby="nfttSidebarOffcanvasLabel">
+            <!-- danirus sidebartemplate: "globaltoc.html" --><div class="offcanvas-header border-bottom">
+  <h5 class="offcanvas-title" id="nfttSidebarOffcanvasLabel">
+    Table of contents
+  </h5>
+  <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#sidebar"></button>
+</div>
+
+<div class="offcanvas-body">
+  <nav class="toc" aria-label="Main menu">
+    <div class="mb-3 p-1 pt-3 pb-4 border-bottom">
+      <input id="sidebar-filter" type="text" name="filter" class="form-control form-control-sm" placeholder="filter" aria-label="filter">
+    </div>
+    <p class="caption" role="heading"><span class="caption-text">Contenidos</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduccion.html">Introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="instalacion.html">Instalación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uso.html">Uso</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modulos.html">Modulos y Requerimientos</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">MVC (Modelo-Vista-Controlador)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="observador.html">Patrón Observador</a></li>
+<li class="toctree-l1"><a class="reference internal" href="observador.html#registro-log">Registro (Log)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="red.html">Arquitectura de Red (Cliente-Servidor)</a></li>
+</ul>
+
+  </nav>
+  <template data-toggle-item-template>
+    <button class="btn btn-sm btn-link toctree-expand" type="button">
+      <i class="bi bi-caret-right"></i>
+      <span class="visually-hidden">Toggle menu contents</span>
+    </button>
+  </template>
+</div>
+        </div>
+      </aside>
+      <main class="nftt-main">
+        <article id="content" class="nftt-content" role="main">
+    <section id="mvc-modelo-vista-controlador">
+<h1>MVC (Modelo-Vista-Controlador)<a class="headerlink" href="#mvc-modelo-vista-controlador" title="Link to this heading">¶</a></h1>
+<p>El patrón Modelo-Vista-Controlador (MVC) es un patrón de diseño de software que se utiliza comúnmente para desarrollar interfaces de usuario. Consiste en tres componentes principales: el <strong>Modelo</strong>, la <strong>Vista</strong> y el <strong>Controlador</strong>. Cada uno de estos componentes desempeña un papel específico en la aplicación y ayuda a organizar el código de manera modular y mantenible.</p>
+<section id="modelo">
+<h2>Modelo<a class="headerlink" href="#modelo" title="Link to this heading">¶</a></h2>
+<p>El <strong>Modelo</strong> representa los datos y la lógica de negocio de la aplicación. Es responsable de acceder y manipular los datos subyacentes, así como de realizar operaciones como validaciones y cálculos.</p>
+<p>El código relacionado con el Modelo se encuentra en el archivo <cite>modelo.py</cite>. Este archivo contiene la clase <cite>BaseDatos()</cite> que permiten el manejo de la base de datos local SQLite3.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="c1"># Alumno : Sebastian Sanchez Bentolila </span>
+<span class="linenos">  2</span>
+<span class="linenos">  3</span><span class="c1"># Modelo - Aplicación {gestor de contactos}</span>
+<span class="linenos">  4</span>
+<span class="linenos">  5</span><span class="c1"># Librerías</span>
+<span class="linenos">  6</span><span class="kn">import</span> <span class="nn">sqlite3</span>
+<span class="linenos">  7</span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="linenos">  8</span>            
+<span class="linenos">  9</span><span class="c1"># Clases        </span>
+<span class="linenos"> 10</span><span class="k">class</span> <span class="nc">BaseDatos</span><span class="p">():</span>
+<span class="linenos"> 11</span>    <span class="c1"># Clase para el manejo de la base de datos</span>
+<span class="linenos"> 12</span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,):</span>
+<span class="linenos"> 13</span>        <span class="bp">self</span><span class="o">.</span><span class="n">con</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;contactos.db&#39;</span><span class="p">)</span>
+<span class="linenos"> 14</span>        <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">con</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+<span class="linenos"> 15</span>        <span class="bp">self</span><span class="o">.</span><span class="n">sql</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="linenos"> 16</span>        <span class="bp">self</span><span class="o">.</span><span class="n">observadores</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="linenos"> 17</span>        <span class="bp">self</span><span class="o">.</span><span class="n">verificar_tabla</span><span class="p">()</span>
+<span class="linenos"> 18</span>        
+<span class="linenos"> 19</span>    <span class="c1"># Métodos</span>
+<span class="linenos"> 20</span>    <span class="k">def</span> <span class="nf">crear_tabla</span><span class="p">(</span><span class="bp">self</span><span class="p">,):</span>
+<span class="linenos"> 21</span>        <span class="c1"># Crear la tabla en la db</span>
+<span class="linenos"> 22</span>        <span class="bp">self</span><span class="o">.</span><span class="n">sql</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;CREATE TABLE contactos(</span>
+<span class="linenos"> 23</span><span class="s1">                      id INTEGER PRIMARY KEY AUTOINCREMENT,</span>
+<span class="linenos"> 24</span><span class="s1">                      telefono INT,</span>
+<span class="linenos"> 25</span><span class="s1">                      nombre TEXT,</span>
+<span class="linenos"> 26</span><span class="s1">                      empresa TEXT,</span>
+<span class="linenos"> 27</span><span class="s1">                      mail TEXT,</span>
+<span class="linenos"> 28</span><span class="s1">                      relacion TEXT);&#39;&#39;&#39;</span>
+<span class="linenos"> 29</span>        <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sql</span><span class="p">)</span>
+<span class="linenos"> 30</span>        <span class="bp">self</span><span class="o">.</span><span class="n">guardar_cambios</span><span class="p">()</span>
+<span class="linenos"> 31</span>        
+<span class="linenos"> 32</span>    <span class="k">def</span> <span class="nf">guardar_cambios</span><span class="p">(</span><span class="bp">self</span><span class="p">,):</span>
+<span class="linenos"> 33</span>        <span class="c1"># Guardar los cambios </span>
+<span class="linenos"> 34</span>        <span class="bp">self</span><span class="o">.</span><span class="n">con</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+<span class="linenos"> 35</span>    
+<span class="linenos"> 36</span>    <span class="k">def</span> <span class="nf">cerrar_db</span><span class="p">(</span><span class="bp">self</span><span class="p">,):</span>
+<span class="linenos"> 37</span>        <span class="c1"># Cerrando la db</span>
+<span class="linenos"> 38</span>        <span class="bp">self</span><span class="o">.</span><span class="n">con</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="linenos"> 39</span>        
+<span class="linenos"> 40</span>    <span class="k">def</span> <span class="nf">insertar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">telefono</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">nombre</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">empresa</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">mail</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">relacion</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>
+<span class="linenos"> 41</span>        <span class="c1"># Inserta un nuevo contacto en la db</span>
+<span class="linenos"> 42</span>        <span class="n">numero</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">telefono</span><span class="p">)</span>
+<span class="linenos"> 43</span>        <span class="n">data</span> <span class="o">=</span> <span class="p">(</span><span class="n">numero</span><span class="p">,</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">empresa</span><span class="p">,</span> <span class="n">mail</span><span class="p">,</span> <span class="n">relacion</span><span class="p">)</span>
+<span class="linenos"> 44</span>        <span class="bp">self</span><span class="o">.</span><span class="n">sql</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;INSERT INTO contactos(telefono, nombre, empresa, mail, relacion) </span>
+<span class="linenos"> 45</span><span class="s1">                      VALUES(?, ?, ?, ?, ?)&#39;&#39;&#39;</span>
+<span class="linenos"> 46</span>        <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sql</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+<span class="linenos"> 47</span>        <span class="bp">self</span><span class="o">.</span><span class="n">guardar_cambios</span><span class="p">()</span>
+<span class="linenos"> 48</span>        <span class="bp">self</span><span class="o">.</span><span class="n">notificar_observadores</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Contacto agregado: </span><span class="si">{</span><span class="n">nombre</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos"> 49</span>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">lastrowid</span>
+<span class="linenos"> 50</span>         
+<span class="linenos"> 51</span>    <span class="k">def</span> <span class="nf">seleccionar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nombre</span><span class="p">):</span>
+<span class="linenos"> 52</span>        <span class="c1"># Selecciona algun contacto de la db</span>
+<span class="linenos"> 53</span>        <span class="n">data</span> <span class="o">=</span> <span class="p">(</span><span class="n">nombre</span><span class="p">,)</span>
+<span class="linenos"> 54</span>        <span class="bp">self</span><span class="o">.</span><span class="n">sql</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM contactos WHERE nombre = ?;&quot;</span>
+<span class="linenos"> 55</span>        <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sql</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+<span class="linenos"> 56</span>        <span class="n">rows</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+<span class="linenos"> 57</span>        <span class="bp">self</span><span class="o">.</span><span class="n">guardar_cambios</span><span class="p">()</span>
+<span class="linenos"> 58</span>        <span class="k">return</span> <span class="n">rows</span>
+<span class="linenos"> 59</span>    
+<span class="linenos"> 60</span>    <span class="k">def</span> <span class="nf">actualizar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">contacto_id</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">telefono</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">nombre</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">empresa</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">mail</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">relacion</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+<span class="linenos"> 61</span>        <span class="c1"># Actualiza algun elemento de un contacto de la db</span>
+<span class="linenos"> 62</span>        <span class="bp">self</span><span class="o">.</span><span class="n">sql</span> <span class="o">=</span> <span class="s2">&quot;UPDATE contactos SET &quot;</span>
+<span class="linenos"> 63</span>        <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="linenos"> 64</span>        
+<span class="linenos"> 65</span>        <span class="c1"># Verificamos que haya ingresado dato para modificarlo, caso contrario quedara igual</span>
+<span class="linenos"> 66</span>        <span class="k">if</span> <span class="n">telefono</span><span class="p">:</span>
+<span class="linenos"> 67</span>            <span class="bp">self</span><span class="o">.</span><span class="n">sql</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sql</span> <span class="o">+</span> <span class="s2">&quot;telefono=?, &quot;</span>  
+<span class="linenos"> 68</span>            <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">telefono</span><span class="p">)</span> 
+<span class="linenos"> 69</span>        <span class="k">if</span> <span class="n">nombre</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+<span class="linenos"> 70</span>            <span class="bp">self</span><span class="o">.</span><span class="n">sql</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sql</span> <span class="o">+</span> <span class="s2">&quot;nombre=?, &quot;</span>
+<span class="linenos"> 71</span>            <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nombre</span><span class="p">)</span>
+<span class="linenos"> 72</span>        <span class="k">if</span> <span class="n">empresa</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+<span class="linenos"> 73</span>            <span class="bp">self</span><span class="o">.</span><span class="n">sql</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sql</span> <span class="o">+</span> <span class="s2">&quot;empresa=?, &quot;</span>
+<span class="linenos"> 74</span>            <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">empresa</span><span class="p">)</span>
+<span class="linenos"> 75</span>        <span class="k">if</span> <span class="n">mail</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+<span class="linenos"> 76</span>            <span class="bp">self</span><span class="o">.</span><span class="n">sql</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sql</span> <span class="o">+</span> <span class="s2">&quot;mail=?, &quot;</span>
+<span class="linenos"> 77</span>            <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mail</span><span class="p">)</span>
+<span class="linenos"> 78</span>        <span class="k">if</span> <span class="n">relacion</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+<span class="linenos"> 79</span>            <span class="bp">self</span><span class="o">.</span><span class="n">sql</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sql</span> <span class="o">+</span> <span class="s2">&quot;relacion=?, &quot;</span>
+<span class="linenos"> 80</span>            <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">relacion</span><span class="p">)</span>
+<span class="linenos"> 81</span>        
+<span class="linenos"> 82</span>        <span class="c1"># Elimina la coma y el espacion final del comando de SQL   </span>
+<span class="linenos"> 83</span>        <span class="bp">self</span><span class="o">.</span><span class="n">sql</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sql</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="p">)</span>
+<span class="linenos"> 84</span>        
+<span class="linenos"> 85</span>        <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">contacto_id</span><span class="p">)</span>   
+<span class="linenos"> 86</span>        <span class="n">data_tupla</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="linenos"> 87</span>        <span class="bp">self</span><span class="o">.</span><span class="n">sql</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sql</span> <span class="o">+</span> <span class="s2">&quot; WHERE id=?;&quot;</span>
+<span class="linenos"> 88</span>        <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sql</span><span class="p">,</span> <span class="n">data_tupla</span><span class="p">)</span>
+<span class="linenos"> 89</span>        <span class="bp">self</span><span class="o">.</span><span class="n">guardar_cambios</span><span class="p">()</span>
+<span class="linenos"> 90</span>        <span class="bp">self</span><span class="o">.</span><span class="n">notificar_observadores</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Contacto modificado: </span><span class="si">{</span><span class="n">nombre</span><span class="si">}</span><span class="s2">, id: </span><span class="si">{</span><span class="n">contacto_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos"> 91</span>        
+<span class="linenos"> 92</span>    <span class="k">def</span> <span class="nf">borrar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nombre</span><span class="p">):</span>
+<span class="linenos"> 93</span>        <span class="c1"># Borra algun contacto de la db</span>
+<span class="linenos"> 94</span>        <span class="n">data</span> <span class="o">=</span> <span class="p">(</span><span class="n">nombre</span><span class="p">,)</span>
+<span class="linenos"> 95</span>        <span class="bp">self</span><span class="o">.</span><span class="n">sql</span> <span class="o">=</span> <span class="s2">&quot;DELETE from contactos where nombre = ?;&quot;</span>
+<span class="linenos"> 96</span>        <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sql</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+<span class="linenos"> 97</span>        <span class="bp">self</span><span class="o">.</span><span class="n">guardar_cambios</span><span class="p">()</span>
+<span class="linenos"> 98</span>        <span class="bp">self</span><span class="o">.</span><span class="n">notificar_observadores</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Contacto borrado: </span><span class="si">{</span><span class="n">nombre</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos"> 99</span>        
+<span class="linenos">100</span>    <span class="k">def</span> <span class="nf">ordenar_contactos_por_nombre</span><span class="p">(</span><span class="bp">self</span><span class="p">,):</span>
+<span class="linenos">101</span>        <span class="c1"># Ordena los contactos por nombre</span>
+<span class="linenos">102</span>        <span class="bp">self</span><span class="o">.</span><span class="n">sql</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM contactos ORDER BY nombre;&quot;</span>
+<span class="linenos">103</span>        <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sql</span><span class="p">)</span>
+<span class="linenos">104</span>        <span class="n">rows</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>      
+<span class="linenos">105</span>        <span class="bp">self</span><span class="o">.</span><span class="n">guardar_cambios</span><span class="p">()</span>
+<span class="linenos">106</span>        <span class="k">return</span> <span class="n">rows</span>
+<span class="linenos">107</span>    
+<span class="linenos">108</span>    <span class="k">def</span> <span class="nf">verificar_tabla</span><span class="p">(</span><span class="bp">self</span><span class="p">,):</span>
+<span class="linenos">109</span>        <span class="c1"># Verifica si la tabla &#39;contactos&#39; existe</span>
+<span class="linenos">110</span>        <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;SELECT count(name) FROM sqlite_master WHERE type=&#39;table&#39; AND name=&#39;contactos&#39;;&#39;&#39;&#39;</span><span class="p">)</span>
+<span class="linenos">111</span>        
+<span class="linenos">112</span>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="c1"># Si no existe, la crea</span>
+<span class="linenos">113</span>            <span class="bp">self</span><span class="o">.</span><span class="n">crear_tabla</span><span class="p">()</span>
+<span class="linenos">114</span>            
+<span class="linenos">115</span>    <span class="k">def</span> <span class="nf">verificar_existencia_contacto</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nombre</span><span class="p">):</span>
+<span class="linenos">116</span>        <span class="c1"># Verifica la existencia de un contacto en la tabla por nombre</span>
+<span class="linenos">117</span>        <span class="n">data</span> <span class="o">=</span> <span class="p">(</span><span class="n">nombre</span><span class="p">,)</span>
+<span class="linenos">118</span>        <span class="bp">self</span><span class="o">.</span><span class="n">sql</span> <span class="o">=</span> <span class="s2">&quot;SELECT COUNT(*) FROM contactos WHERE nombre = ?;&quot;</span>
+<span class="linenos">119</span>        <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sql</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+<span class="linenos">120</span>        <span class="n">count</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+<span class="linenos">121</span>        <span class="k">return</span> <span class="n">count</span> <span class="o">&gt;</span> <span class="mi">0</span>
+<span class="linenos">122</span>
+<span class="linenos">123</span>    <span class="k">def</span> <span class="nf">verificar_existencia_contacto_por_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">id_contacto</span><span class="p">):</span>
+<span class="linenos">124</span>        <span class="c1"># Verifica la existencia de un contacto en la tabla por ID</span>
+<span class="linenos">125</span>        <span class="n">data</span> <span class="o">=</span> <span class="p">(</span><span class="n">id_contacto</span><span class="p">,)</span>
+<span class="linenos">126</span>        <span class="bp">self</span><span class="o">.</span><span class="n">sql</span> <span class="o">=</span> <span class="s2">&quot;SELECT COUNT(*) FROM contactos WHERE id = ?;&quot;</span>
+<span class="linenos">127</span>        <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sql</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+<span class="linenos">128</span>        <span class="n">count</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+<span class="linenos">129</span>        <span class="k">return</span> <span class="n">count</span> <span class="o">&gt;</span> <span class="mi">0</span>
+<span class="linenos">130</span>    
+<span class="linenos">131</span>    <span class="c1"># Métodos del observador</span>
+<span class="linenos">132</span>    <span class="k">def</span> <span class="nf">agregar_observador</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observador</span><span class="p">):</span>
+<span class="linenos">133</span>        <span class="bp">self</span><span class="o">.</span><span class="n">observadores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">observador</span><span class="p">)</span>
+<span class="linenos">134</span>
+<span class="linenos">135</span>    <span class="k">def</span> <span class="nf">eliminar_observador</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observador</span><span class="p">):</span>
+<span class="linenos">136</span>        <span class="bp">self</span><span class="o">.</span><span class="n">observadores</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">observador</span><span class="p">)</span>
+<span class="linenos">137</span>
+<span class="linenos">138</span>    <span class="k">def</span> <span class="nf">notificar_observadores</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mensaje</span><span class="p">):</span>
+<span class="linenos">139</span>        <span class="k">for</span> <span class="n">observador</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">observadores</span><span class="p">:</span>
+<span class="linenos">140</span>            <span class="n">observador</span><span class="o">.</span><span class="n">actualizar</span><span class="p">(</span><span class="n">mensaje</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="vista">
+<h2>Vista<a class="headerlink" href="#vista" title="Link to this heading">¶</a></h2>
+<p>La <strong>Vista</strong> es la interfaz de usuario con la que interactúan los usuarios finales. Es responsable de presentar los datos al usuario de una manera comprensible y de capturar las acciones del usuario, como hacer clic en botones o introducir datos en formularios.</p>
+<p>El código relacionado con la Vista se encuentra en el archivo <cite>vista.py</cite>. Este archivo contiene la clase <cite>ventana_grafica()</cite> donde con Tkinter implementamos la ventana gráfica con sus Widgets y metodos necesarios.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="c1"># Alumno : Sebastian Sanchez Bentolila </span>
+<span class="linenos">  2</span>
+<span class="linenos">  3</span><span class="c1"># Vista - Aplicación {gestor de contactos}</span>
+<span class="linenos">  4</span>
+<span class="linenos">  5</span><span class="c1"># Librerías</span>
+<span class="linenos">  6</span><span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">Tk</span><span class="p">,</span> <span class="n">messagebox</span><span class="p">,</span> <span class="n">Scrollbar</span><span class="p">,</span> <span class="n">Label</span><span class="p">,</span> <span class="n">Entry</span><span class="p">,</span> <span class="n">Button</span><span class="p">,</span> <span class="n">Text</span><span class="p">,</span> <span class="n">VERTICAL</span><span class="p">,</span> <span class="n">END</span>
+<span class="linenos">  7</span><span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">getcwd</span><span class="p">,</span> <span class="n">remove</span>
+<span class="linenos">  8</span><span class="kn">from</span> <span class="nn">modelo</span> <span class="kn">import</span> <span class="n">BaseDatos</span>
+<span class="linenos">  9</span><span class="kn">from</span> <span class="nn">modulos.expresiones</span> <span class="kn">import</span> <span class="n">validar_expresiones</span>
+<span class="linenos"> 10</span><span class="kn">from</span> <span class="nn">log.observador</span> <span class="kn">import</span> <span class="n">ObservadorRegistro</span>
+<span class="linenos"> 11</span><span class="kn">from</span> <span class="nn">red.servidor</span> <span class="kn">import</span> <span class="n">Servidor</span>
+<span class="linenos"> 12</span>
+<span class="linenos"> 13</span><span class="c1"># Clases</span>
+<span class="linenos"> 14</span><span class="k">class</span> <span class="nc">ventana_grafica</span><span class="p">():</span>
+<span class="linenos"> 15</span>    <span class="c1"># Clase de la ventana gráfica </span>
+<span class="linenos"> 16</span>    
+<span class="linenos"> 17</span>    <span class="c1"># Configuracion de la ventana principal</span>
+<span class="linenos"> 18</span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">):</span>
+<span class="linenos"> 19</span>        <span class="bp">self</span><span class="o">.</span><span class="n">ventana</span> <span class="o">=</span> <span class="n">root</span>
+<span class="linenos"> 20</span>        <span class="bp">self</span><span class="o">.</span><span class="n">db</span> <span class="o">=</span> <span class="n">BaseDatos</span><span class="p">()</span>
+<span class="linenos"> 21</span>        <span class="bp">self</span><span class="o">.</span><span class="n">observador_registro</span> <span class="o">=</span> <span class="n">ObservadorRegistro</span><span class="p">(</span><span class="s1">&#39;log</span><span class="se">\\</span><span class="s1">registro_log.txt&#39;</span><span class="p">)</span>
+<span class="linenos"> 22</span>        <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">agregar_observador</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">observador_registro</span><span class="p">)</span>
+<span class="linenos"> 23</span>        <span class="bp">self</span><span class="o">.</span><span class="n">ventana</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Gestor de Contactos&quot;</span><span class="p">)</span>
+<span class="linenos"> 24</span>        <span class="bp">self</span><span class="o">.</span><span class="n">ventana</span><span class="o">.</span><span class="n">iconbitmap</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="se">\\</span><span class="s1">archivos</span><span class="se">\\</span><span class="s1">icon</span><span class="se">\\</span><span class="s1">libro_contacto.ico&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">getcwd</span><span class="p">()))</span>
+<span class="linenos"> 25</span>        <span class="bp">self</span><span class="o">.</span><span class="n">ventana</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">bg</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">cursor</span><span class="o">=</span><span class="s1">&#39;tcross&#39;</span><span class="p">)</span>
+<span class="linenos"> 26</span>        <span class="bp">self</span><span class="o">.</span><span class="n">ventana</span><span class="o">.</span><span class="n">resizable</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="linenos"> 27</span>        <span class="bp">self</span><span class="o">.</span><span class="n">Widgets</span><span class="p">()</span>
+<span class="linenos"> 28</span>        <span class="bp">self</span><span class="o">.</span><span class="n">ventana</span><span class="o">.</span><span class="n">mainloop</span><span class="p">()</span>
+<span class="linenos"> 29</span>        
+<span class="linenos"> 30</span>    <span class="c1"># Métodos </span>
+<span class="linenos"> 31</span>    <span class="k">def</span> <span class="nf">Widgets</span><span class="p">(</span><span class="bp">self</span><span class="p">,):</span>
+<span class="linenos"> 32</span>        <span class="c1"># Accesorios de la ventana gráfica</span>
+<span class="linenos"> 33</span>        <span class="c1"># Sección - Agregar contacto</span>
+<span class="linenos"> 34</span>        <span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ventana</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Teléfono:&quot;</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">fg</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="linenos"> 35</span>        <span class="bp">self</span><span class="o">.</span><span class="n">telefono_entry</span> <span class="o">=</span> <span class="n">Entry</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ventana</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s2">&quot;lightblue&quot;</span><span class="p">)</span>
+<span class="linenos"> 36</span>        <span class="bp">self</span><span class="o">.</span><span class="n">telefono_entry</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos"> 37</span>
+<span class="linenos"> 38</span>        <span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ventana</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Nombre:&quot;</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">fg</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="linenos"> 39</span>        <span class="bp">self</span><span class="o">.</span><span class="n">nombre_entry</span> <span class="o">=</span> <span class="n">Entry</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ventana</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s2">&quot;lightblue&quot;</span><span class="p">)</span>
+<span class="linenos"> 40</span>        <span class="bp">self</span><span class="o">.</span><span class="n">nombre_entry</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos"> 41</span>
+<span class="linenos"> 42</span>        <span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ventana</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Empresa:&quot;</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">fg</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="linenos"> 43</span>        <span class="bp">self</span><span class="o">.</span><span class="n">empresa_entry</span> <span class="o">=</span> <span class="n">Entry</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ventana</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s2">&quot;lightblue&quot;</span><span class="p">)</span>
+<span class="linenos"> 44</span>        <span class="bp">self</span><span class="o">.</span><span class="n">empresa_entry</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos"> 45</span>
+<span class="linenos"> 46</span>        <span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ventana</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Correo:&quot;</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">fg</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="linenos"> 47</span>        <span class="bp">self</span><span class="o">.</span><span class="n">mail_entry</span> <span class="o">=</span> <span class="n">Entry</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ventana</span><span class="p">,</span><span class="n">bg</span><span class="o">=</span><span class="s2">&quot;lightblue&quot;</span><span class="p">)</span>
+<span class="linenos"> 48</span>        <span class="bp">self</span><span class="o">.</span><span class="n">mail_entry</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos"> 49</span>
+<span class="linenos"> 50</span>        <span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ventana</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Relacion:&quot;</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">fg</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="linenos"> 51</span>        <span class="bp">self</span><span class="o">.</span><span class="n">relacion_entry</span> <span class="o">=</span> <span class="n">Entry</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ventana</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s2">&quot;lightblue&quot;</span><span class="p">)</span>
+<span class="linenos"> 52</span>        <span class="bp">self</span><span class="o">.</span><span class="n">relacion_entry</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos"> 53</span>
+<span class="linenos"> 54</span>        <span class="bp">self</span><span class="o">.</span><span class="n">agregar_btn</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ventana</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Agregar Contacto&quot;</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="n">fg</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">agregar_contacto</span><span class="p">)</span>
+<span class="linenos"> 55</span>        <span class="bp">self</span><span class="o">.</span><span class="n">agregar_btn</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">columnspan</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="linenos"> 56</span>        
+<span class="linenos"> 57</span>        <span class="c1"># Sección - Buscar Contacto</span>
+<span class="linenos"> 58</span>        <span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ventana</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Buscar por nombre:&quot;</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">fg</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="linenos"> 59</span>        <span class="bp">self</span><span class="o">.</span><span class="n">nombre_buscar_entry</span> <span class="o">=</span> <span class="n">Entry</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ventana</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s2">&quot;lightblue&quot;</span><span class="p">)</span>
+<span class="linenos"> 60</span>        <span class="bp">self</span><span class="o">.</span><span class="n">nombre_buscar_entry</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos"> 61</span>
+<span class="linenos"> 62</span>        <span class="bp">self</span><span class="o">.</span><span class="n">buscar_btn</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ventana</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Buscar Contacto&quot;</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="n">fg</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">seleccionar_contacto</span><span class="p">)</span>
+<span class="linenos"> 63</span>        <span class="bp">self</span><span class="o">.</span><span class="n">buscar_btn</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">columnspan</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="linenos"> 64</span>        
+<span class="linenos"> 65</span>        <span class="c1"># Sección - Resultado de la busqueda de contacto</span>
+<span class="linenos"> 66</span>        <span class="bp">self</span><span class="o">.</span><span class="n">resultado_text</span> <span class="o">=</span> <span class="n">Text</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ventana</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s2">&quot;lightblue&quot;</span><span class="p">,</span> <span class="n">fg</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+<span class="linenos"> 67</span>        <span class="bp">self</span><span class="o">.</span><span class="n">resultado_text</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">columnspan</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="linenos"> 68</span>        
+<span class="linenos"> 69</span>        <span class="c1"># Sección - Borrar Contacto</span>
+<span class="linenos"> 70</span>        <span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ventana</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Borrar por nombre:&quot;</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">fg</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="linenos"> 71</span>        <span class="bp">self</span><span class="o">.</span><span class="n">nombre_borrar_entry</span> <span class="o">=</span> <span class="n">Entry</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ventana</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s2">&quot;lightblue&quot;</span><span class="p">)</span>
+<span class="linenos"> 72</span>        <span class="bp">self</span><span class="o">.</span><span class="n">nombre_borrar_entry</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="linenos"> 73</span>
+<span class="linenos"> 74</span>        <span class="bp">self</span><span class="o">.</span><span class="n">borrar_btn</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ventana</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Borrar Contacto&quot;</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="n">fg</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">borrar_contacto</span><span class="p">)</span>
+<span class="linenos"> 75</span>        <span class="bp">self</span><span class="o">.</span><span class="n">borrar_btn</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">columnspan</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="linenos"> 76</span>        
+<span class="linenos"> 77</span>        <span class="c1"># Seccion - Modificar Contacto</span>
+<span class="linenos"> 78</span>        <span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ventana</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;ID del contacto a modificar:&quot;</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">fg</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="linenos"> 79</span>        <span class="bp">self</span><span class="o">.</span><span class="n">id_modificar_entry</span> <span class="o">=</span> <span class="n">Entry</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ventana</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s2">&quot;lightblue&quot;</span><span class="p">)</span>
+<span class="linenos"> 80</span>        <span class="bp">self</span><span class="o">.</span><span class="n">id_modificar_entry</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="linenos"> 81</span>
+<span class="linenos"> 82</span>        <span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ventana</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Nuevo teléfono:&quot;</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">fg</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="linenos"> 83</span>        <span class="bp">self</span><span class="o">.</span><span class="n">nuevo_telefono_entry</span> <span class="o">=</span> <span class="n">Entry</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ventana</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s2">&quot;lightblue&quot;</span><span class="p">)</span>
+<span class="linenos"> 84</span>        <span class="bp">self</span><span class="o">.</span><span class="n">nuevo_telefono_entry</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="linenos"> 85</span>
+<span class="linenos"> 86</span>        <span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ventana</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Nuevo nombre:&quot;</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">fg</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="linenos"> 87</span>        <span class="bp">self</span><span class="o">.</span><span class="n">nuevo_nombre_entry</span> <span class="o">=</span> <span class="n">Entry</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ventana</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s2">&quot;lightblue&quot;</span><span class="p">)</span>
+<span class="linenos"> 88</span>        <span class="bp">self</span><span class="o">.</span><span class="n">nuevo_nombre_entry</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="linenos"> 89</span>
+<span class="linenos"> 90</span>        <span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ventana</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Nueva empresa:&quot;</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">fg</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="linenos"> 91</span>        <span class="bp">self</span><span class="o">.</span><span class="n">nueva_empresa_entry</span> <span class="o">=</span> <span class="n">Entry</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ventana</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s2">&quot;lightblue&quot;</span><span class="p">)</span>
+<span class="linenos"> 92</span>        <span class="bp">self</span><span class="o">.</span><span class="n">nueva_empresa_entry</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="linenos"> 93</span>
+<span class="linenos"> 94</span>        <span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ventana</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Nuevo correo:&quot;</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">fg</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="linenos"> 95</span>        <span class="bp">self</span><span class="o">.</span><span class="n">nuevo_mail_entry</span> <span class="o">=</span> <span class="n">Entry</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ventana</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s2">&quot;lightblue&quot;</span><span class="p">)</span>
+<span class="linenos"> 96</span>        <span class="bp">self</span><span class="o">.</span><span class="n">nuevo_mail_entry</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="linenos"> 97</span>
+<span class="linenos"> 98</span>        <span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ventana</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Nueva relacion:&quot;</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">fg</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="linenos"> 99</span>        <span class="bp">self</span><span class="o">.</span><span class="n">nuevo_relacion_entry</span> <span class="o">=</span> <span class="n">Entry</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ventana</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s2">&quot;lightblue&quot;</span><span class="p">)</span>
+<span class="linenos">100</span>        <span class="bp">self</span><span class="o">.</span><span class="n">nuevo_relacion_entry</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="linenos">101</span>
+<span class="linenos">102</span>        <span class="bp">self</span><span class="o">.</span><span class="n">modificar_btn</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ventana</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Modificar Contacto&quot;</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="n">fg</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">modificar_contacto</span><span class="p">)</span>
+<span class="linenos">103</span>        <span class="bp">self</span><span class="o">.</span><span class="n">modificar_btn</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">columnspan</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="linenos">104</span>        
+<span class="linenos">105</span>        <span class="c1"># Sección - Lista de Contactos</span>
+<span class="linenos">106</span>        <span class="bp">self</span><span class="o">.</span><span class="n">lista_btn</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ventana</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Ver contactos&quot;</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="n">fg</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">abrir_lista_contactos</span><span class="p">)</span>
+<span class="linenos">107</span>        <span class="bp">self</span><span class="o">.</span><span class="n">lista_btn</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">columnspan</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="linenos">108</span>
+<span class="linenos">109</span>        <span class="bp">self</span><span class="o">.</span><span class="n">lista_text</span> <span class="o">=</span> <span class="n">Text</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ventana</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s2">&quot;lightblue&quot;</span><span class="p">,</span> <span class="n">fg</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+<span class="linenos">110</span>        <span class="bp">self</span><span class="o">.</span><span class="n">lista_text</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">columnspan</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="linenos">111</span>        <span class="bp">self</span><span class="o">.</span><span class="n">agregar_scrollbar</span><span class="p">()</span>
+<span class="linenos">112</span>        
+<span class="linenos">113</span>        <span class="c1"># Agregando una columna vacia para generar una separación entre arriba y abajo</span>
+<span class="linenos">114</span>        <span class="bp">self</span><span class="o">.</span><span class="n">espacio</span> <span class="o">=</span> <span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ventana</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">fg</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">columnspan</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="linenos">115</span>        
+<span class="linenos">116</span>    <span class="k">def</span> <span class="nf">agregar_scrollbar</span><span class="p">(</span><span class="bp">self</span><span class="p">,):</span>
+<span class="linenos">117</span>        <span class="c1"># Scrollbar para la Sección de lista de contactos</span>
+<span class="linenos">118</span>        <span class="bp">self</span><span class="o">.</span><span class="n">scrollbar</span> <span class="o">=</span> <span class="n">Scrollbar</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ventana</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="n">VERTICAL</span> <span class="p">,</span><span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">lista_text</span><span class="o">.</span><span class="n">yview</span><span class="p">)</span>
+<span class="linenos">119</span>        <span class="bp">self</span><span class="o">.</span><span class="n">scrollbar</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">rowspan</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="s1">&#39;ns&#39;</span><span class="p">)</span>
+<span class="linenos">120</span>        <span class="bp">self</span><span class="o">.</span><span class="n">lista_text</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">yscrollcommand</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">scrollbar</span><span class="o">.</span><span class="n">set</span><span class="p">)</span>
+<span class="linenos">121</span>        
+<span class="linenos">122</span>    <span class="k">def</span> <span class="nf">modificar_contacto</span><span class="p">(</span><span class="bp">self</span><span class="p">,):</span>
+<span class="linenos">123</span>        <span class="c1"># Comando para modificar algun contacto</span>
+<span class="linenos">124</span>        <span class="n">id_contacto</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">id_modificar_entry</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+<span class="linenos">125</span>        <span class="n">nuevo_telefono</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nuevo_telefono_entry</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+<span class="linenos">126</span>        <span class="n">nuevo_nombre</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nuevo_nombre_entry</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+<span class="linenos">127</span>        <span class="n">nueva_empresa</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nueva_empresa_entry</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+<span class="linenos">128</span>        <span class="n">nuevo_mail</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nuevo_mail_entry</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+<span class="linenos">129</span>        <span class="n">nuevo_relacion</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nuevo_relacion_entry</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+<span class="linenos">130</span>        
+<span class="linenos">131</span>        <span class="k">if</span> <span class="n">id_contacto</span> <span class="ow">and</span> <span class="p">(</span><span class="n">nuevo_telefono</span> <span class="ow">or</span> <span class="n">nuevo_nombre</span> <span class="ow">or</span> <span class="n">nueva_empresa</span> <span class="ow">or</span> <span class="n">nuevo_mail</span> <span class="ow">or</span> <span class="n">nuevo_relacion</span><span class="p">):</span>
+<span class="linenos">132</span>            <span class="n">expresiones_validas</span> <span class="o">=</span> <span class="n">validar_expresiones</span><span class="p">(</span><span class="n">nuevo_telefono</span><span class="p">,</span> <span class="n">nuevo_nombre</span><span class="p">,</span> <span class="n">nuevo_mail</span><span class="p">)</span>
+<span class="linenos">133</span>            <span class="k">if</span> <span class="n">expresiones_validas</span><span class="p">:</span>
+<span class="linenos">134</span>                <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">expresiones_validas</span> <span class="c1"># x,y,z son las validaciónes de esos campos (boleanos)</span>
+<span class="linenos">135</span>                <span class="k">if</span> <span class="n">x</span> <span class="ow">and</span> <span class="n">y</span> <span class="ow">and</span> <span class="n">z</span><span class="p">:</span>
+<span class="linenos">136</span>                    <span class="k">try</span><span class="p">:</span>
+<span class="linenos">137</span>                        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">verificar_existencia_contacto_por_id</span><span class="p">(</span><span class="n">id_contacto</span><span class="p">):</span>
+<span class="linenos">138</span>                            <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">actualizar</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">id_contacto</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">nuevo_telefono</span><span class="p">),</span> <span class="n">nuevo_nombre</span><span class="p">,</span> <span class="n">nueva_empresa</span><span class="p">,</span> <span class="n">nuevo_mail</span><span class="p">,</span> <span class="n">nuevo_relacion</span><span class="p">)</span>
+<span class="linenos">139</span>                            <span class="n">messagebox</span><span class="o">.</span><span class="n">showinfo</span><span class="p">(</span><span class="s2">&quot;Éxito&quot;</span><span class="p">,</span> <span class="s2">&quot;Contacto modificado con éxito&quot;</span><span class="p">)</span>
+<span class="linenos">140</span>                        <span class="k">else</span><span class="p">:</span>
+<span class="linenos">141</span>                            <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="s2">&quot;Error&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;No se encontró un contacto con el ID &#39;</span><span class="si">{</span><span class="n">id_contacto</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+<span class="linenos">142</span>                    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="linenos">143</span>                        <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="s2">&quot;Error&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Error al modificar el contacto: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos">144</span>                <span class="k">else</span><span class="p">:</span>
+<span class="linenos">145</span>                    <span class="k">pass</span>
+<span class="linenos">146</span>        <span class="k">else</span><span class="p">:</span>
+<span class="linenos">147</span>            <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="s2">&quot;Error&quot;</span><span class="p">,</span> <span class="s2">&quot;ID del contacto y el telefono son campos obligatorios&quot;</span><span class="p">)</span>
+<span class="linenos">148</span>            
+<span class="linenos">149</span>    <span class="k">def</span> <span class="nf">agregar_contacto</span><span class="p">(</span><span class="bp">self</span><span class="p">,):</span>
+<span class="linenos">150</span>        <span class="c1"># Comando para agregar un contacto a la db</span>
+<span class="linenos">151</span>        <span class="n">telefono</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">telefono_entry</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+<span class="linenos">152</span>        <span class="n">nombre</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nombre_entry</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+<span class="linenos">153</span>        <span class="n">empresa</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">empresa_entry</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+<span class="linenos">154</span>        <span class="n">mail</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mail_entry</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+<span class="linenos">155</span>        <span class="n">relacion</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relacion_entry</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+<span class="linenos">156</span>        
+<span class="linenos">157</span>        <span class="k">if</span> <span class="n">telefono</span> <span class="ow">and</span> <span class="n">nombre</span><span class="p">:</span>
+<span class="linenos">158</span>            <span class="n">expresiones_validas</span> <span class="o">=</span> <span class="n">validar_expresiones</span><span class="p">(</span><span class="n">telefono</span><span class="p">,</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">mail</span><span class="p">)</span>
+<span class="linenos">159</span>            <span class="k">if</span> <span class="n">expresiones_validas</span><span class="p">:</span>
+<span class="linenos">160</span>                <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">expresiones_validas</span> <span class="c1"># x,y,z son las validaciónes de esos campos (boleanos)</span>
+<span class="linenos">161</span>                <span class="k">if</span> <span class="n">x</span> <span class="ow">and</span> <span class="n">y</span> <span class="ow">and</span> <span class="n">z</span><span class="p">:</span>
+<span class="linenos">162</span>                    <span class="k">try</span><span class="p">:</span>
+<span class="linenos">163</span>                        <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">insertar</span><span class="p">(</span><span class="n">telefono</span><span class="p">,</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">empresa</span><span class="p">,</span> <span class="n">mail</span><span class="p">,</span> <span class="n">relacion</span><span class="p">)</span>
+<span class="linenos">164</span>                        <span class="n">messagebox</span><span class="o">.</span><span class="n">showinfo</span><span class="p">(</span><span class="s2">&quot;Éxito&quot;</span><span class="p">,</span> <span class="s2">&quot;Contacto agregado con éxito&quot;</span><span class="p">)</span>
+<span class="linenos">165</span>                    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="linenos">166</span>                        <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="s2">&quot;Error&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Error al agregar el contacto: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos">167</span>            <span class="k">else</span><span class="p">:</span>
+<span class="linenos">168</span>                <span class="k">pass</span>
+<span class="linenos">169</span>        <span class="k">else</span><span class="p">:</span>
+<span class="linenos">170</span>            <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="s2">&quot;Error&quot;</span><span class="p">,</span> <span class="s2">&quot;El nombre y el teléfono son campos obligatorios&quot;</span><span class="p">)</span>
+<span class="linenos">171</span>            
+<span class="linenos">172</span>    <span class="k">def</span> <span class="nf">seleccionar_contacto</span><span class="p">(</span><span class="bp">self</span><span class="p">,):</span>
+<span class="linenos">173</span>        <span class="c1"># Comando para seleccionar y copiar la información del contacto</span>
+<span class="linenos">174</span>        <span class="n">nombre</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nombre_buscar_entry</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+<span class="linenos">175</span>        <span class="k">if</span> <span class="n">nombre</span><span class="p">:</span>
+<span class="linenos">176</span>            <span class="k">try</span><span class="p">:</span>
+<span class="linenos">177</span>                <span class="n">contactos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">seleccionar</span><span class="p">(</span><span class="n">nombre</span><span class="p">)</span>
+<span class="linenos">178</span>                <span class="bp">self</span><span class="o">.</span><span class="n">resultado_text</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">END</span><span class="p">)</span>  <span class="c1"># Limpiar el texto existente</span>
+<span class="linenos">179</span>                <span class="k">if</span> <span class="n">contactos</span><span class="p">:</span>
+<span class="linenos">180</span>                    <span class="k">for</span> <span class="n">contacto</span> <span class="ow">in</span> <span class="n">contactos</span><span class="p">:</span>
+<span class="linenos">181</span>                        <span class="bp">self</span><span class="o">.</span><span class="n">resultado_text</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">END</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;ID: </span><span class="si">{</span><span class="n">contacto</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos">182</span>                        <span class="bp">self</span><span class="o">.</span><span class="n">resultado_text</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">END</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Teléfono: </span><span class="si">{</span><span class="n">contacto</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos">183</span>                        <span class="bp">self</span><span class="o">.</span><span class="n">resultado_text</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">END</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Nombre: </span><span class="si">{</span><span class="n">contacto</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos">184</span>                        <span class="bp">self</span><span class="o">.</span><span class="n">resultado_text</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">END</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Empresa: </span><span class="si">{</span><span class="n">contacto</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos">185</span>                        <span class="bp">self</span><span class="o">.</span><span class="n">resultado_text</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">END</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Correo: </span><span class="si">{</span><span class="n">contacto</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos">186</span>                        <span class="bp">self</span><span class="o">.</span><span class="n">resultado_text</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">END</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Relacion: </span><span class="si">{</span><span class="n">contacto</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos">187</span>                <span class="k">else</span><span class="p">:</span>
+<span class="linenos">188</span>                    <span class="bp">self</span><span class="o">.</span><span class="n">resultado_text</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">END</span><span class="p">,</span> <span class="s2">&quot;No se encontraron contactos con ese nombre&quot;</span><span class="p">)</span>
+<span class="linenos">189</span>            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="linenos">190</span>                <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="s2">&quot;Error&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Error al buscar el contacto: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos">191</span>        <span class="k">else</span><span class="p">:</span>
+<span class="linenos">192</span>            <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="s2">&quot;Error&quot;</span><span class="p">,</span> <span class="s2">&quot;Por favor, ingresa un nombre para buscar&quot;</span><span class="p">)</span>
+<span class="linenos">193</span>            
+<span class="linenos">194</span>    <span class="k">def</span> <span class="nf">borrar_contacto</span><span class="p">(</span><span class="bp">self</span><span class="p">,):</span>
+<span class="linenos">195</span>        <span class="c1"># Comando para borrar algun contacto de la db</span>
+<span class="linenos">196</span>        <span class="n">nombre</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nombre_borrar_entry</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+<span class="linenos">197</span>        <span class="k">if</span> <span class="n">nombre</span><span class="p">:</span>
+<span class="linenos">198</span>            <span class="k">try</span><span class="p">:</span>
+<span class="linenos">199</span>                <span class="c1"># Verificar si el contacto existe en la tabla</span>
+<span class="linenos">200</span>                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">verificar_existencia_contacto</span><span class="p">(</span><span class="n">nombre</span><span class="p">):</span>
+<span class="linenos">201</span>                    <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">borrar</span><span class="p">(</span><span class="n">nombre</span><span class="p">)</span>
+<span class="linenos">202</span>                    <span class="n">messagebox</span><span class="o">.</span><span class="n">showinfo</span><span class="p">(</span><span class="s2">&quot;Éxito&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Contacto &#39;</span><span class="si">{</span><span class="n">nombre</span><span class="si">}</span><span class="s2">&#39; borrado con éxito&quot;</span><span class="p">)</span>
+<span class="linenos">203</span>                <span class="k">else</span><span class="p">:</span>
+<span class="linenos">204</span>                    <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="s2">&quot;Error&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;El contacto &#39;</span><span class="si">{</span><span class="n">nombre</span><span class="si">}</span><span class="s2">&#39; no existe en la base de datos&quot;</span><span class="p">)</span>
+<span class="linenos">205</span>            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="linenos">206</span>                <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="s2">&quot;Error&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Error al borrar el contacto: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos">207</span>        <span class="k">else</span><span class="p">:</span>
+<span class="linenos">208</span>            <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="s2">&quot;Error&quot;</span><span class="p">,</span> <span class="s2">&quot;Por favor, ingresa un nombre para borrar&quot;</span><span class="p">)</span>
+<span class="linenos">209</span>            
+<span class="linenos">210</span>    <span class="k">def</span> <span class="nf">abrir_lista_contactos</span><span class="p">(</span><span class="bp">self</span><span class="p">,):</span>
+<span class="linenos">211</span>        <span class="c1"># Comando para abrir una lista con los contactos y mostrarlos al usuario</span>
+<span class="linenos">212</span>        <span class="n">archivo</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;modulos</span><span class="se">\\</span><span class="s2">lista_contactos.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span>
+<span class="linenos">213</span>        <span class="n">lista_contactos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">ordenar_contactos_por_nombre</span><span class="p">()</span>
+<span class="linenos">214</span>
+<span class="linenos">215</span>        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">lista_contactos</span><span class="p">):</span>
+<span class="linenos">216</span>            <span class="n">archivo</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos">217</span>            <span class="n">archivo</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ID       : </span><span class="si">{</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos">218</span>            <span class="n">archivo</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Telefono : </span><span class="si">{</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos">219</span>            <span class="n">archivo</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Empresa  : </span><span class="si">{</span><span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos">220</span>            <span class="n">archivo</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mail     : </span><span class="si">{</span><span class="n">x</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos">221</span>            <span class="n">archivo</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Relacion : </span><span class="si">{</span><span class="n">x</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos">222</span>            
+<span class="linenos">223</span>            <span class="c1"># Agregar una línea en blanco si no es la última iteración</span>
+<span class="linenos">224</span>            <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">lista_contactos</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+<span class="linenos">225</span>                <span class="n">archivo</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos">226</span>
+<span class="linenos">227</span>        <span class="n">archivo</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="linenos">228</span>    
+<span class="linenos">229</span>        <span class="n">archivo</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;modulos</span><span class="se">\\</span><span class="s2">lista_contactos.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
+<span class="linenos">230</span>        <span class="n">contenido</span> <span class="o">=</span> <span class="n">archivo</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="linenos">231</span>        <span class="n">archivo</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="linenos">232</span>        
+<span class="linenos">233</span>        <span class="k">if</span> <span class="n">contenido</span><span class="p">:</span>
+<span class="linenos">234</span>            <span class="k">try</span><span class="p">:</span>
+<span class="linenos">235</span>                <span class="bp">self</span><span class="o">.</span><span class="n">lista_text</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">END</span><span class="p">)</span>  <span class="c1"># Limpiar el texto existente</span>
+<span class="linenos">236</span>                <span class="bp">self</span><span class="o">.</span><span class="n">lista_text</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">END</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">contenido</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos">237</span>            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="linenos">238</span>                <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="s2">&quot;Error&quot;</span><span class="p">,</span> <span class="s2">&quot;Error al cargar la base de datos&quot;</span><span class="p">)</span>
+<span class="linenos">239</span>        <span class="k">else</span><span class="p">:</span>
+<span class="linenos">240</span>            <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="s2">&quot;Error&quot;</span><span class="p">,</span> <span class="s2">&quot;Error&quot;</span><span class="p">)</span>
+<span class="linenos">241</span>            
+<span class="linenos">242</span>    <span class="k">def</span> <span class="nf">cerrar_aplicacion</span><span class="p">(</span><span class="bp">self</span><span class="p">,):</span>
+<span class="linenos">243</span>        <span class="c1"># Cerrar y quitar la ventana gráfica</span>
+<span class="linenos">244</span>        <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">cerrar_db</span><span class="p">()</span>
+<span class="linenos">245</span>        <span class="bp">self</span><span class="o">.</span><span class="n">ventana</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span>
+<span class="linenos">246</span>        <span class="bp">self</span><span class="o">.</span><span class="n">ventana</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="controlador">
+<h2>Controlador<a class="headerlink" href="#controlador" title="Link to this heading">¶</a></h2>
+<p>El <strong>Controlador</strong> actúa como intermediario entre el Modelo y la Vista. Es responsable de interpretar las acciones del usuario y actualizar el Modelo en consecuencia. También actualiza la Vista para reflejar cualquier cambio en el Modelo.</p>
+<p>El código relacionado con el Controlador se encuentra en el archivo <cite>controlador.py</cite>. Este archivo contiene la función <cite>iniciar_aplicacion()</cite> la cual inicia la vista, el servidor y el cliente a la vez.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># Alumno : Sebastian Sanchez Bentolila</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="c1"># Controlador - Aplicación {gestor de contactos}</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="c1"># Librerías</span>
+<span class="linenos"> 6</span><span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">Tk</span>
+<span class="linenos"> 7</span><span class="kn">from</span> <span class="nn">vista</span> <span class="kn">import</span> <span class="n">ventana_grafica</span>
+<span class="linenos"> 8</span><span class="kn">from</span> <span class="nn">red.cliente</span> <span class="kn">import</span> <span class="n">Cliente</span>
+<span class="linenos"> 9</span><span class="kn">from</span> <span class="nn">red.servidor</span> <span class="kn">import</span> <span class="n">Servidor</span>
+<span class="linenos">10</span><span class="kn">from</span> <span class="nn">log.observador</span> <span class="kn">import</span> <span class="n">ObservadorRegistro</span>
+<span class="linenos">11</span><span class="kn">import</span> <span class="nn">threading</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span><span class="c1"># Bucle principal</span>
+<span class="linenos">14</span><span class="k">def</span> <span class="nf">iniciar_aplicacion</span><span class="p">():</span>
+<span class="linenos">15</span>    <span class="c1"># Iniciar Servidor </span>
+<span class="linenos">16</span>    <span class="n">observador_registro</span> <span class="o">=</span> <span class="n">ObservadorRegistro</span><span class="p">(</span><span class="s1">&#39;log</span><span class="se">\\</span><span class="s1">registro_log.txt&#39;</span><span class="p">)</span>
+<span class="linenos">17</span>    <span class="n">servidor</span> <span class="o">=</span> <span class="n">Servidor</span><span class="p">(</span><span class="s1">&#39;192.168.56.1&#39;</span><span class="p">,</span> <span class="mi">456</span><span class="p">,</span> <span class="n">observador_registro</span><span class="p">)</span>
+<span class="linenos">18</span>    <span class="n">hilo_servidor</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">servidor</span><span class="o">.</span><span class="n">iniciar</span><span class="p">)</span>
+<span class="linenos">19</span>    <span class="n">hilo_servidor</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="linenos">20</span>    <span class="c1">#servidor.iniciar()</span>
+<span class="linenos">21</span>    
+<span class="linenos">22</span>    <span class="c1"># Cliente </span>
+<span class="linenos">23</span>    <span class="n">cliente</span> <span class="o">=</span> <span class="n">Cliente</span><span class="p">(</span><span class="s1">&#39;192.168.56.1&#39;</span><span class="p">,</span> <span class="mi">456</span><span class="p">)</span>
+<span class="linenos">24</span>    <span class="n">mensaje_inicio</span> <span class="o">=</span> <span class="s2">&quot;Cliente conectado&quot;</span>
+<span class="linenos">25</span>    <span class="n">cliente</span><span class="o">.</span><span class="n">enviar_mensaje</span><span class="p">(</span><span class="n">mensaje_inicio</span><span class="p">)</span>
+<span class="linenos">26</span>    
+<span class="linenos">27</span>    <span class="c1"># Ventana Gráfica</span>
+<span class="linenos">28</span>    <span class="n">root</span> <span class="o">=</span> <span class="n">Tk</span><span class="p">()</span>       
+<span class="linenos">29</span>    <span class="n">app</span> <span class="o">=</span> <span class="n">ventana_grafica</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+<span class="linenos">30</span>    
+<span class="linenos">31</span>    <span class="c1"># Cerrando Conexión</span>
+<span class="linenos">32</span>    <span class="n">mensaje_cierre</span> <span class="o">=</span> <span class="s2">&quot;Cliente desconectado&quot;</span>
+<span class="linenos">33</span>    <span class="n">cliente</span><span class="o">.</span><span class="n">enviar_mensaje</span><span class="p">(</span><span class="n">mensaje_cierre</span><span class="p">)</span>
+<span class="linenos">34</span>    <span class="n">cliente</span><span class="o">.</span><span class="n">cerrar_conexion</span><span class="p">()</span>
+<span class="linenos">35</span>    
+<span class="linenos">36</span>    <span class="c1"># Cerrando Servidor</span>
+<span class="linenos">37</span>    <span class="n">servidor</span><span class="o">.</span><span class="n">detener</span><span class="p">()</span>
+<span class="linenos">38</span>    <span class="n">hilo_servidor</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+</article>
+        
+          <aside class="nftt-toc">
+            <div class="mt-3 mb-1 my-lg-0 ps-xl-3 text-muted">
+              <button class="btn btn-link link-dark p-md-0 mb-2 mb-md-0 text-decoration-none nftt-toc-toggle d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#tocContents" aria-expanded="false" aria-controls="tocContents"
+              >On this page <i class="ms-2 bi bi-chevron-expand"></i></button>
+              <div class="title d-none d-md-block">
+                <i class="bi bi-file-earmark-text"></i>&nbsp;&nbsp;<span class="small">On this page</span>
+              </div>
+              <hr class="d-none d-md-block my-2">
+              <div class="collapse nftt-toc-collapse" id="tocContents">
+                <nav id="TableOfContents">
+                  <ul>
+<li><a class="reference internal" href="#">MVC (Modelo-Vista-Controlador)</a><ul>
+<li><a class="reference internal" href="#modelo">Modelo</a></li>
+<li><a class="reference internal" href="#vista">Vista</a></li>
+<li><a class="reference internal" href="#controlador">Controlador</a></li>
+</ul>
+</li>
+</ul>
+
+                </nav>
+              </div>
+            </div>
+          </aside>
+        
+      </main>
+    </div>
+
+    <footer class="nftt-footer">
+      <nav id="paginator" class="py-4" aria-label="Documentation navigation">
+    <div class="container">
+      <ul class="pagination justify-content-between mb-0"><li class="page-item">
+            <a href="modulos.html" class="d-flex px-5 align-items-end" rel="prev" aria-label="Previous page: Modulos y Requerimientos">
+              <span class="prev-page"><i class="bi bi-caret-left"></i></span>
+              <div class="d-flex flex-column">
+                <span class="text-small text-start text-muted">Previous</span>
+                <span class="underline">Modulos y Requerimientos</span>
+              </div>
+            </a>
+          </li>
+        <li class="page-item ms-auto">
+            <a href="observador.html" class="d-flex px-5 align-items-end" rel="next" aria-label="Next page: Patrón Observador">
+              <div class="d-flex flex-column">
+                <span class="text-small text-end text-start text-muted">Next</span>
+                <span class="underline">Patrón Observador</span>
+              </div>
+              <span class="next-page"><i class="bi bi-caret-right"></i></span>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </nav>
+
+      <div class="py-5 px-4 px-md-3">
+  <div class="container">
+    
+
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <a class="brand-text d-inline-flex align-items-center mb-2 text-decoration-none" href="/" aria-label="Nefertiti-for-Sphinx">
+          <span class="fs-6 fw-bold">Gestor de Contactos</span>
+        </a>
+        
+          <ul class="list-unstyled small text-muted">
+            <li>2024, Sebastian Sanchez Bentolila</li>
+          </ul>
+        
+        
+        <div class="built-with pt-2">
+          Built with <a href="http://sphinx-doc.org">Sphinx 7.2.6</a> and <a href="https://github.com/danirus/sphinx-nefertiti">Nefertiti 0.2.1</a>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+    </footer>
+    <script src="_static/documentation_options.js?v=9c9b61ad"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/translations.js?v=efdbd0b9"></script>
+
+    <script type="text/javascript" src="_static/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="_static/sphinx-nefertiti.min.js"></script>
+    
+  </body>
+</html>

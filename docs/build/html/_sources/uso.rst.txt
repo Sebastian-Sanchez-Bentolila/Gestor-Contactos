@@ -1,0 +1,28 @@
+Uso
+===
+
+.. image:: foto_aplicacion.png
+   :width: 800px
+   
+La sección superior izquierda, podras agendar contactos. Para ellos, podras colorar los campos con los datos que quieras
+pero obligatoriamente se deberá poner un nombre y telefono. 
+
+Abajo de este podras buscar contactos por nombres y te dará la información del contacto. 
+
+.. note::
+    Si no te acuerdas puedes simplemente buscar por la inicial y fijarte entre los resultados
+
+
+En la parte superior del medio podras modificar un contacto, indicando el id y moficiando si o si el telefono. 
+
+A la derecha de todo, podras borrar un contacto simplemente poniendo su nombre
+
+Por ultimo abajo verá un listados de todos sus contactos si oprime el botón
+
+
+Para dar un resumen, los usuarios pueden realizar las siguientes acciones:
+
+- Agregar nuevos contactos proporcionando información como teléfono, nombre, empresa, correo electrónico y relación.
+- Buscar contactos existentes por nombre.
+- Modificar información de contactos existentes.
+- Eliminar contactos de la lista.

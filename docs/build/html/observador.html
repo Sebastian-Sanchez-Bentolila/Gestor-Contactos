@@ -1,0 +1,291 @@
+
+
+<!DOCTYPE html>
+<html class="no-js" lang="es">
+  <head>
+    <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="docsearch:name" content="Gestor de Contactos" />
+    <meta name="docsearch:package_type" content="" />
+    <meta name="docsearch:release" content="0.1" />
+    <meta name="docsearch:version" content="" />
+    
+      <title>Patrón Observador &mdash; documentación de Gestor de Contactos - 0.1</title>
+    
+    <link rel="stylesheet" href="_static/bootstrap-icons.css" type="text/css" />
+          <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=83e35b93" />
+          <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="_static/pygments_dark.css?v=b20cc3f5" />
+          <link rel="stylesheet" type="text/css" href="_static/colorsets\sphinx-nefertiti.min.css?v=e96129fb" />
+          <link rel="stylesheet" type="text/css" href="_static/fonts\nunito\stylesheet.css?v=0ed606bc" />
+          <link rel="stylesheet" type="text/css" href="_static/fonts\red-hat-mono\stylesheet.css?v=4eee5046" />
+          <link rel="stylesheet" type="text/css" href="_static/pygments_dark.css?v=b20cc3f5" />
+        <link rel="index" title="Índice" href="genindex.html" />
+        <link rel="search" title="Búsqueda" href="search.html" />
+        <link rel="top" title="documentación de Gestor de Contactos - 0.1" href="#" />
+        <link rel="next" title="Arquitectura de Red (Cliente-Servidor)" href="red.html" />
+        <link rel="prev" title="MVC (Modelo-Vista-Controlador)" href="MVC.html" />
+    <style>
+      :root {
+        --nftt-body-font-family: "Nunito", var(--nftt-font-sans-serif) !important;
+        --nftt-font-monospace: "Red Hat Mono", var(--nftt-font-family-monospace) !important;
+        --nftt-project-name-font: var(--nftt-body-font-family);
+        --nftt-documentation-font: var(--nftt-body-font-family);
+        --nftt-doc-headers-font: "Georgia", var(--nftt-documentation-font);}
+      h1 *, h2 *, h3 *, h4 *, h5 *, h6 * { font-size: inherit; }
+    </style>
+  </head>
+  <body>
+    <header class="navbar navbar-expand-lg navbar-dark nftt-navbar flex-column fixed-top">
+      <div class="skip-links container-xxl visually-hidden-focusable overflow-hidden justify-content-start">
+        <div class="border-bottom mb-2 pb-2 w-100">
+          <a class="d-none d-md-inline-flex p-2 m-1" href="#sidebar-filter">Skip to docs navigation</a>
+          <a class="d-inline-flex p-2 m-1" href="#content">Skip to main content</a>
+        </div>
+      </div>
+      <nav class="container-xxl nftt-gutter flex-wrap flex-lg-nowrap" aria-label="Main navigation">
+        <div class="nftt-navbar-toggler">
+          <button class="navbar-toggler p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="sidebar" aria-label="Toggle documentation navigation">
+            <i class="bi bi-list"></i>
+          </button>
+        </div>
+          <a href="index.html"
+              
+              class="navbar-brand p-0 me-0 md-lg-2"
+          ><span class="brand-text">Gestor de Contactos</span></a>
+        
+        <div class="d-flex d-lg-none">
+          <button class="navbar-toggler p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#nfttSearch" aria-controls="nfttSearch" aria-label="Search">
+            <i class="bi bi-search"></i>
+          </button>
+          <button class="navbar-toggler p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#nfttNavbar" aria-controls="nfttNavbar" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+        </div>
+        
+<div class="offcanvas-lg offcanvas-end flex-grow-1" tabindex="-1" id="nfttSearch" aria-labelledby="nfttSearchOffcanvasLabel" data-bs-scroll="true">
+  <div class="offcanvas-header px-4 pb-0">
+    <h5 class="offcanvas-title fw-bold" id="nfttSearchOffcanvasLabel">Search the documentation</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#nfttSearch"></button>
+  </div>
+  <div class="offcanvas-body p-4 pt-0 p-lg-0 px-lg-3">
+    <hr class="d-lg-none text-white-50">
+    <ul class="navbar-nav flex-row align-items-center flex-wrap ms-md-auto">
+      <li class="nav-item col-12 col-lg-auto">
+        <form id="nftt-search-form" action="search.html" method="get">
+          <div class="input-group">
+            <input type="text" name="q" class="form-control" placeholder="Search docs" aria-label="Search" aria-describedby="button-search">
+            <input type="hidden" name="check_keywords" value="yes" />
+            <input type="hidden" name="area" value="default" />
+            <button class="btn btn-primary" type="submit" id="button-search" aria-label="Search"><i class="bi bi-search"></i></button>
+          </div>
+        </form>
+      </li>
+    </ul>
+  </div>
+</div>
+
+        <div class="offcanvas-lg offcanvas-end" tabindex="-1" id="nfttNavbar" aria-labelledby="nfttNavbarOffcanvasLabel" data-bs-scroll="true">
+          <div class="offcanvas-header px-4 pb-0">
+            <div class="offcanvas-title text-white fw-bold" id="nfttNavbarOffcanvasLabel"><span class="brand-text">Nefertiti for Sphinx</span></div>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#nfttNavbar"></button>
+          </div>
+          <div class="offcanvas-body p-4 pt-0 p-lg-0">
+            <hr class="d-lg-none text-white-50">
+            <ul class="navbar-nav flex-row align-items-center flex-wrap ms-md-auto">
+              
+              <!-- version_dropdown.html -->
+
+              
+              <!-- colorscheme_dropdown.html -->
+<li class="nav-item dropdown">
+  <a class="nav-link d-flex py-2 px-0 px-lg-2 dropdown-toggle align-items-center" id="snftt-luz" href="#" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false" aria-label="Toggle light/dark">
+    <i class="bi bi-circle-half" data-snftt-luz-icon-active></i>
+    <span id="snftt-luz-text" class="d-lg-none small ms-2">Toggle light/dark</span>
+  </a>
+  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="snftt-luz-text">
+    <li>
+      <h6 class="dropdown-header">Light/dark</h6>
+    </li>
+    <li>
+      <a class="dropdown-item d-flex align-items-center" data-snftt-luz="light" href="#" aria-pressed="false">
+        <span class="small">
+          <i class="bi bi-sun" data-snftt-luz-icon="light"></i>
+        </span>
+        <span class="small ms-3">Light</span>
+        <i class="bi bi-check ms-auto"></i>
+      </a>
+    </li>
+    <li>
+      <a class="dropdown-item d-flex align-items-center" data-snftt-luz="dark" href="#" aria-pressed="false">
+        <span class="small">
+          <i class="bi bi-moon-stars" data-snftt-luz-icon="dark"></i>
+        </span>
+        <span class="small ms-3">Dark</span>
+        <i class="bi bi-check ms-auto"></i>
+      </a>
+    </li>
+    <li>
+      <a class="dropdown-item current d-flex align-items-center" data-snftt-luz="default" href="#" aria-pressed="false">
+        <span class="small">
+          <i class="bi bi-circle-half" data-snftt-luz-icon="default"></i>
+        </span>
+        <span class="small ms-3">Default</span>
+        <i class="bi bi-check ms-auto"></i>
+      </a>
+    </li>
+  </ul>
+</li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <div class="container-xxl nftt-gutter nftt-layout">
+      <aside class="nftt-sidebar">
+        <div class="title d-none d-md-block">
+          <i class="bi bi-book"></i>&nbsp;&nbsp;<span>Table of contents</span>
+        </div>
+        <div id="sidebar" tabindex="-1" class="offcanvas-lg offcanvas-start" aria-labelledby="nfttSidebarOffcanvasLabel">
+            <!-- danirus sidebartemplate: "globaltoc.html" --><div class="offcanvas-header border-bottom">
+  <h5 class="offcanvas-title" id="nfttSidebarOffcanvasLabel">
+    Table of contents
+  </h5>
+  <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#sidebar"></button>
+</div>
+
+<div class="offcanvas-body">
+  <nav class="toc" aria-label="Main menu">
+    <div class="mb-3 p-1 pt-3 pb-4 border-bottom">
+      <input id="sidebar-filter" type="text" name="filter" class="form-control form-control-sm" placeholder="filter" aria-label="filter">
+    </div>
+    <p class="caption" role="heading"><span class="caption-text">Contenidos</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduccion.html">Introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="instalacion.html">Instalación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uso.html">Uso</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modulos.html">Modulos y Requerimientos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MVC.html">MVC (Modelo-Vista-Controlador)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Patrón Observador</a></li>
+<li class="toctree-l1"><a class="reference internal" href="red.html">Arquitectura de Red (Cliente-Servidor)</a></li>
+</ul>
+
+  </nav>
+  <template data-toggle-item-template>
+    <button class="btn btn-sm btn-link toctree-expand" type="button">
+      <i class="bi bi-caret-right"></i>
+      <span class="visually-hidden">Toggle menu contents</span>
+    </button>
+  </template>
+</div>
+        </div>
+      </aside>
+      <main class="nftt-main">
+        <article id="content" class="nftt-content" role="main">
+    <section id="patron-observador">
+<h1>Patrón Observador<a class="headerlink" href="#patron-observador" title="Link to this heading">¶</a></h1>
+<p>El patrón Observador es un diseño de software que define una relación uno a muchos entre objetos. En este patrón, un objeto, llamado sujeto, mantiene una lista de suscriptores, llamados observadores, y notifica automáticamente a los observadores sobre cualquier cambio en su estado, generalmente mediante la llamada a uno de sus métodos. Este patrón es útil en situaciones donde hay una dependencia entre objetos, y se desea que los cambios en un objeto se reflejen automáticamente en otros.</p>
+<p>En el contexto de nuestro proyecto, el patrón Observador se utiliza para notificar a los clientes (observadores) sobre cambios en la lista de contactos mantenida por el servidor (sujeto). Cuando se agrega, elimina o modifica un contacto en el servidor, este notifica a todos los clientes conectados sobre el cambio para que puedan actualizar su vista correspondiente.</p>
+<p>El funcionamiento del patrón Observador en nuestro proyecto se puede resumir en los siguientes pasos:</p>
+<ol class="arabic simple">
+<li><p><strong>Sujeto (Servidor)</strong>: El servidor mantiene una lista de observadores (clientes) interesados en los cambios en la lista de contactos.</p></li>
+<li><p><strong>Registro de Observadores</strong>: Los clientes se registran como observadores del servidor cuando se conectan al sistema.</p></li>
+<li><p><strong>Notificación de Cambios</strong>: Cuando se realiza un cambio en la lista de contactos en el servidor, este notifica automáticamente a todos los clientes registrados sobre el cambio.</p></li>
+<li><p><strong>Actualización de los Observadores</strong>: Los clientes reciben la notificación del servidor y actualizan su interfaz de usuario para reflejar los cambios en la lista de contactos.</p></li>
+</ol>
+<p>El código relacionado con la implementación del patrón Observador se encuentra en el archivos <cite>observador.py</cite>. A continuación, se muestra una vista general del código:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># Alumno : Sebastian Sanchez Bentolila </span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="c1"># Clase Observador - Aplicación {gestor de contactos}</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="c1"># Librerías</span>
+<span class="linenos"> 6</span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="c1"># Clases</span>
+<span class="linenos"> 9</span><span class="k">class</span> <span class="nc">Observador</span><span class="p">:</span>
+<span class="linenos">10</span>    <span class="c1"># Observador</span>
+<span class="linenos">11</span>    <span class="k">def</span> <span class="nf">actualizar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mensaje</span><span class="p">):</span>
+<span class="linenos">12</span>        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Subclases de Observador&quot;</span><span class="p">)</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span><span class="k">class</span> <span class="nc">ObservadorRegistro</span><span class="p">(</span><span class="n">Observador</span><span class="p">):</span>
+<span class="linenos">15</span>    <span class="c1"># Observador para registrar eventos registro_log.txt</span>
+<span class="linenos">16</span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">archivo_registro</span><span class="p">):</span>
+<span class="linenos">17</span>        <span class="bp">self</span><span class="o">.</span><span class="n">archivo_registro</span> <span class="o">=</span> <span class="n">archivo_registro</span>
+<span class="linenos">18</span>
+<span class="linenos">19</span>    <span class="k">def</span> <span class="nf">actualizar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mensaje</span><span class="p">):</span>
+<span class="linenos">20</span>        <span class="c1"># Guardar el mensaje en el archivo de registro con la fecha y hora actual</span>
+<span class="linenos">21</span>        <span class="n">timestamp</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S&quot;</span><span class="p">)</span>
+<span class="linenos">22</span>        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">archivo_registro</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+<span class="linenos">23</span>            <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">timestamp</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">mensaje</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>El código anterior muestra la implementación básica del patrón Observador en Python, donde el <cite>Sujeto</cite> (<cite>Servidor</cite> en nuestro caso) mantiene una lista de <cite>Observadores</cite> (clientes) y notifica a cada observador cuando se producen cambios.</p>
+</section>
+
+</article>
+        
+      </main>
+    </div>
+
+    <footer class="nftt-footer">
+      <nav id="paginator" class="py-4" aria-label="Documentation navigation">
+    <div class="container">
+      <ul class="pagination justify-content-between mb-0"><li class="page-item">
+            <a href="MVC.html" class="d-flex px-5 align-items-end" rel="prev" aria-label="Previous page: MVC (Modelo-Vista-Controlador)">
+              <span class="prev-page"><i class="bi bi-caret-left"></i></span>
+              <div class="d-flex flex-column">
+                <span class="text-small text-start text-muted">Previous</span>
+                <span class="underline">MVC (Modelo-Vista-Controlador)</span>
+              </div>
+            </a>
+          </li>
+        <li class="page-item ms-auto">
+            <a href="red.html" class="d-flex px-5 align-items-end" rel="next" aria-label="Next page: Arquitectura de Red (Cliente-Servidor)">
+              <div class="d-flex flex-column">
+                <span class="text-small text-end text-start text-muted">Next</span>
+                <span class="underline">Arquitectura de Red (Cliente-Servidor)</span>
+              </div>
+              <span class="next-page"><i class="bi bi-caret-right"></i></span>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </nav>
+
+      <div class="py-5 px-4 px-md-3">
+  <div class="container">
+    
+
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <a class="brand-text d-inline-flex align-items-center mb-2 text-decoration-none" href="/" aria-label="Nefertiti-for-Sphinx">
+          <span class="fs-6 fw-bold">Gestor de Contactos</span>
+        </a>
+        
+          <ul class="list-unstyled small text-muted">
+            <li>2024, Sebastian Sanchez Bentolila</li>
+          </ul>
+        
+        
+        <div class="built-with pt-2">
+          Built with <a href="http://sphinx-doc.org">Sphinx 7.2.6</a> and <a href="https://github.com/danirus/sphinx-nefertiti">Nefertiti 0.2.1</a>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+    </footer>
+    <script src="_static/documentation_options.js?v=9c9b61ad"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/translations.js?v=efdbd0b9"></script>
+
+    <script type="text/javascript" src="_static/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="_static/sphinx-nefertiti.min.js"></script>
+    
+  </body>
+</html>

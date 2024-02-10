@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Modulos y Requerimientos</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8e8a900e" />
+    <link rel="stylesheet" type="text/css" href="_static/epub.css?v=1d6d279e" /> 
+  </head><body>
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body" role="main">
+            
+  <section id="modulos-y-requerimientos">
+<h1>Modulos y Requerimientos</h1>
+<section id="requerimientos">
+<h2>Requerimientos</h2>
+<p>El archivo <cite>requirements.txt</cite> especifica las dependencias del proyecto, incluidas las bibliotecas de Python que deben instalarse para ejecutar la aplicación correctamente. Estas dependencias se pueden instalar utilizando herramientas como <cite>pip</cite> (se indica en instalación). Y la version de Python es la 3.10.3.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">alabaster</span><span class="o">==</span><span class="mf">0.7.16</span>
+<span class="n">Babel</span><span class="o">==</span><span class="mf">2.14.0</span>
+<span class="n">certifi</span><span class="o">==</span><span class="mf">2024.2.2</span>
+<span class="n">charset</span><span class="o">-</span><span class="n">normalizer</span><span class="o">==</span><span class="mf">3.3.2</span>
+<span class="n">colorama</span><span class="o">==</span><span class="mf">0.4.6</span>
+<span class="n">docutils</span><span class="o">==</span><span class="mf">0.20.1</span>
+<span class="n">idna</span><span class="o">==</span><span class="mf">3.6</span>
+<span class="n">imagesize</span><span class="o">==</span><span class="mf">1.4.1</span>
+<span class="n">Jinja2</span><span class="o">==</span><span class="mf">3.1.3</span>
+<span class="n">MarkupSafe</span><span class="o">==</span><span class="mf">2.1.5</span>
+<span class="n">packaging</span><span class="o">==</span><span class="mf">23.2</span>
+<span class="n">Pygments</span><span class="o">==</span><span class="mf">2.17.2</span>
+<span class="n">requests</span><span class="o">==</span><span class="mf">2.31.0</span>
+<span class="n">snowballstemmer</span><span class="o">==</span><span class="mf">2.2.0</span>
+<span class="n">Sphinx</span><span class="o">==</span><span class="mf">7.2.6</span>
+<span class="n">sphinx</span><span class="o">-</span><span class="n">nefertiti</span><span class="o">==</span><span class="mf">0.2.1</span>
+<span class="n">sphinxcontrib</span><span class="o">-</span><span class="n">applehelp</span><span class="o">==</span><span class="mf">1.0.8</span>
+<span class="n">sphinxcontrib</span><span class="o">-</span><span class="n">devhelp</span><span class="o">==</span><span class="mf">1.0.6</span>
+<span class="n">sphinxcontrib</span><span class="o">-</span><span class="n">htmlhelp</span><span class="o">==</span><span class="mf">2.0.5</span>
+<span class="n">sphinxcontrib</span><span class="o">-</span><span class="n">jsmath</span><span class="o">==</span><span class="mf">1.0.1</span>
+<span class="n">sphinxcontrib</span><span class="o">-</span><span class="n">qthelp</span><span class="o">==</span><span class="mf">1.0.7</span>
+<span class="n">sphinxcontrib</span><span class="o">-</span><span class="n">serializinghtml</span><span class="o">==</span><span class="mf">1.1.10</span>
+<span class="n">urllib3</span><span class="o">==</span><span class="mf">2.2.0</span>
+</pre></div>
+</div>
+</section>
+<section id="expresiones">
+<h2>Expresiones</h2>
+<p>El módulo <cite>expresiones.py</cite> contiene las clases y funciones relacionadas con el manejo y evaluación de las expresiones de mail, nombre y correo. Para el mail, le puse un formato valido como <a class="reference external" href="mailto:'ejemplo&#37;&#52;&#48;gmail&#46;com">“ejemplo<span>&#64;</span>gmail<span>&#46;</span>com</a>”. En el caso del nombre admite unicamente caracteres alfanumércios sin posibilidad de números ni símbolos. Y el teléfono admite solo 10 numeros.</p>
+<p>A continuación se muestra el contenido del archivo:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># Alumno : Sebastian Sanchez Bentolila </span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="c1"># Módulo Expresiones Regulares - Aplicación {gestor de contactos}</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="c1"># Librerías</span>
+<span class="linenos"> 6</span><span class="kn">from</span> <span class="nn">re</span> <span class="kn">import</span> <span class="n">match</span>
+<span class="linenos"> 7</span><span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">messagebox</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span><span class="c1"># Expresiones regulares para verificar mail, nombre y telefono</span>
+<span class="linenos">10</span><span class="n">telefono_pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;^\d</span><span class="si">{10}</span><span class="s1">$&#39;</span> <span class="c1"># Admite 10 números</span>
+<span class="linenos">11</span><span class="n">correo_pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$&#39;</span> <span class="c1"># Formato mail estandar</span>
+<span class="linenos">12</span><span class="n">nombre_pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$&#39;</span> <span class="c1"># Caracteres alfanuméricos con posibilidad de espacios en blanco</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span><span class="c1"># Funciones</span>
+<span class="linenos">15</span><span class="k">def</span> <span class="nf">validar_expresiones</span><span class="p">(</span><span class="n">telefono</span><span class="p">,</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">mail</span><span class="p">):</span>
+<span class="linenos">16</span>    <span class="c1"># Módulo que permite validar las expresiones dadas por el usuario y devuelve True o False dependiendo el caso</span>
+<span class="linenos">17</span>    <span class="k">global</span> <span class="n">telefono_pattern</span><span class="p">,</span> <span class="n">correo_pattern</span><span class="p">,</span> <span class="n">nombre_pattern</span>
+<span class="linenos">18</span>    <span class="n">telefono_validado</span><span class="o">=</span><span class="kc">False</span>
+<span class="linenos">19</span>    <span class="n">nombreo_validado</span><span class="o">=</span><span class="kc">False</span>
+<span class="linenos">20</span>    <span class="n">mail_validado</span><span class="o">=</span><span class="kc">False</span>
+<span class="linenos">21</span>    
+<span class="linenos">22</span>    <span class="c1"># Validar el teléfono</span>
+<span class="linenos">23</span>    <span class="k">if</span> <span class="n">telefono</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">match</span><span class="p">(</span><span class="n">telefono_pattern</span><span class="p">,</span> <span class="n">telefono</span><span class="p">):</span>
+<span class="linenos">24</span>        <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="s2">&quot;Error&quot;</span><span class="p">,</span> <span class="s2">&quot;El nuevo teléfono no es válido&quot;</span><span class="p">)</span>
+<span class="linenos">25</span>        <span class="k">return</span>
+<span class="linenos">26</span>    <span class="k">else</span><span class="p">:</span>
+<span class="linenos">27</span>        <span class="n">telefono_validado</span><span class="o">=</span><span class="kc">True</span>
+<span class="linenos">28</span>    
+<span class="linenos">29</span>    <span class="c1"># Validar el nombre </span>
+<span class="linenos">30</span>    <span class="k">if</span> <span class="n">nombre</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">match</span><span class="p">(</span><span class="n">nombre_pattern</span><span class="p">,</span> <span class="n">nombre</span><span class="p">):</span>
+<span class="linenos">31</span>        <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="s2">&quot;Error&quot;</span><span class="p">,</span> <span class="s2">&quot;El nombre solo admite caracteres alfanúmericos&quot;</span><span class="p">)</span>
+<span class="linenos">32</span>        <span class="k">return</span>
+<span class="linenos">33</span>    <span class="k">else</span><span class="p">:</span>
+<span class="linenos">34</span>        <span class="n">nombreo_validado</span><span class="o">=</span><span class="kc">True</span>
+<span class="linenos">35</span>        
+<span class="linenos">36</span>    <span class="c1"># Validar el correo electrónico </span>
+<span class="linenos">37</span>    <span class="k">if</span> <span class="n">mail</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">match</span><span class="p">(</span><span class="n">correo_pattern</span><span class="p">,</span> <span class="n">mail</span><span class="p">):</span>
+<span class="linenos">38</span>        <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="s2">&quot;Error&quot;</span><span class="p">,</span> <span class="s2">&quot;El nuevo correo electrónico no es válido&quot;</span><span class="p">)</span>
+<span class="linenos">39</span>        <span class="k">return</span>
+<span class="linenos">40</span>    <span class="k">else</span><span class="p">:</span>
+<span class="linenos">41</span>        <span class="n">mail_validado</span><span class="o">=</span><span class="kc">True</span>
+<span class="linenos">42</span>    
+<span class="linenos">43</span>    <span class="k">return</span> <span class="n">telefono_validado</span><span class="p">,</span> <span class="n">nombreo_validado</span><span class="p">,</span> <span class="n">mail_validado</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  </body>
+</html>

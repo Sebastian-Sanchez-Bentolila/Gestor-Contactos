@@ -1,0 +1,391 @@
+
+
+<!DOCTYPE html>
+<html class="no-js" lang="es">
+  <head>
+    <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="docsearch:name" content="Gestor de Contactos" />
+    <meta name="docsearch:package_type" content="" />
+    <meta name="docsearch:release" content="0.1" />
+    <meta name="docsearch:version" content="" />
+    
+      <title>Arquitectura de Red (Cliente-Servidor) &mdash; documentación de Gestor de Contactos - 0.1</title>
+    
+    <link rel="stylesheet" href="_static/bootstrap-icons.css" type="text/css" />
+          <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=83e35b93" />
+          <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="_static/pygments_dark.css?v=b20cc3f5" />
+          <link rel="stylesheet" type="text/css" href="_static/colorsets\sphinx-nefertiti.min.css?v=e96129fb" />
+          <link rel="stylesheet" type="text/css" href="_static/fonts\nunito\stylesheet.css?v=0ed606bc" />
+          <link rel="stylesheet" type="text/css" href="_static/fonts\red-hat-mono\stylesheet.css?v=4eee5046" />
+          <link rel="stylesheet" type="text/css" href="_static/pygments_dark.css?v=b20cc3f5" />
+        <link rel="index" title="Índice" href="genindex.html" />
+        <link rel="search" title="Búsqueda" href="search.html" />
+        <link rel="top" title="documentación de Gestor de Contactos - 0.1" href="#" />
+        <link rel="prev" title="MVC (Modelo-Vista-Controlador)" href="MVC.html" />
+    <style>
+      :root {
+        --nftt-body-font-family: "Nunito", var(--nftt-font-sans-serif) !important;
+        --nftt-font-monospace: "Red Hat Mono", var(--nftt-font-family-monospace) !important;
+        --nftt-project-name-font: var(--nftt-body-font-family);
+        --nftt-documentation-font: var(--nftt-body-font-family);
+        --nftt-doc-headers-font: "Georgia", var(--nftt-documentation-font);}
+      h1 *, h2 *, h3 *, h4 *, h5 *, h6 * { font-size: inherit; }
+    </style>
+  </head>
+  <body>
+    <header class="navbar navbar-expand-lg navbar-dark nftt-navbar flex-column fixed-top">
+      <div class="skip-links container-xxl visually-hidden-focusable overflow-hidden justify-content-start">
+        <div class="border-bottom mb-2 pb-2 w-100">
+          <a class="d-none d-md-inline-flex p-2 m-1" href="#sidebar-filter">Skip to docs navigation</a>
+          <a class="d-inline-flex p-2 m-1" href="#content">Skip to main content</a>
+        </div>
+      </div>
+      <nav class="container-xxl nftt-gutter flex-wrap flex-lg-nowrap" aria-label="Main navigation">
+        <div class="nftt-navbar-toggler">
+          <button class="navbar-toggler p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="sidebar" aria-label="Toggle documentation navigation">
+            <i class="bi bi-list"></i>
+          </button>
+        </div>
+          <a href="index.html"
+              
+              class="navbar-brand p-0 me-0 md-lg-2"
+          ><span class="brand-text">Gestor de Contactos</span></a>
+        
+        <div class="d-flex d-lg-none">
+          <button class="navbar-toggler p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#nfttSearch" aria-controls="nfttSearch" aria-label="Search">
+            <i class="bi bi-search"></i>
+          </button>
+          <button class="navbar-toggler p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#nfttNavbar" aria-controls="nfttNavbar" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+        </div>
+        
+<div class="offcanvas-lg offcanvas-end flex-grow-1" tabindex="-1" id="nfttSearch" aria-labelledby="nfttSearchOffcanvasLabel" data-bs-scroll="true">
+  <div class="offcanvas-header px-4 pb-0">
+    <h5 class="offcanvas-title fw-bold" id="nfttSearchOffcanvasLabel">Search the documentation</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#nfttSearch"></button>
+  </div>
+  <div class="offcanvas-body p-4 pt-0 p-lg-0 px-lg-3">
+    <hr class="d-lg-none text-white-50">
+    <ul class="navbar-nav flex-row align-items-center flex-wrap ms-md-auto">
+      <li class="nav-item col-12 col-lg-auto">
+        <form id="nftt-search-form" action="search.html" method="get">
+          <div class="input-group">
+            <input type="text" name="q" class="form-control" placeholder="Search docs" aria-label="Search" aria-describedby="button-search">
+            <input type="hidden" name="check_keywords" value="yes" />
+            <input type="hidden" name="area" value="default" />
+            <button class="btn btn-primary" type="submit" id="button-search" aria-label="Search"><i class="bi bi-search"></i></button>
+          </div>
+        </form>
+      </li>
+    </ul>
+  </div>
+</div>
+
+        <div class="offcanvas-lg offcanvas-end" tabindex="-1" id="nfttNavbar" aria-labelledby="nfttNavbarOffcanvasLabel" data-bs-scroll="true">
+          <div class="offcanvas-header px-4 pb-0">
+            <div class="offcanvas-title text-white fw-bold" id="nfttNavbarOffcanvasLabel"><span class="brand-text">Nefertiti for Sphinx</span></div>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#nfttNavbar"></button>
+          </div>
+          <div class="offcanvas-body p-4 pt-0 p-lg-0">
+            <hr class="d-lg-none text-white-50">
+            <ul class="navbar-nav flex-row align-items-center flex-wrap ms-md-auto">
+              
+              <!-- version_dropdown.html -->
+
+              
+              <!-- colorscheme_dropdown.html -->
+<li class="nav-item dropdown">
+  <a class="nav-link d-flex py-2 px-0 px-lg-2 dropdown-toggle align-items-center" id="snftt-luz" href="#" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false" aria-label="Toggle light/dark">
+    <i class="bi bi-circle-half" data-snftt-luz-icon-active></i>
+    <span id="snftt-luz-text" class="d-lg-none small ms-2">Toggle light/dark</span>
+  </a>
+  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="snftt-luz-text">
+    <li>
+      <h6 class="dropdown-header">Light/dark</h6>
+    </li>
+    <li>
+      <a class="dropdown-item d-flex align-items-center" data-snftt-luz="light" href="#" aria-pressed="false">
+        <span class="small">
+          <i class="bi bi-sun" data-snftt-luz-icon="light"></i>
+        </span>
+        <span class="small ms-3">Light</span>
+        <i class="bi bi-check ms-auto"></i>
+      </a>
+    </li>
+    <li>
+      <a class="dropdown-item d-flex align-items-center" data-snftt-luz="dark" href="#" aria-pressed="false">
+        <span class="small">
+          <i class="bi bi-moon-stars" data-snftt-luz-icon="dark"></i>
+        </span>
+        <span class="small ms-3">Dark</span>
+        <i class="bi bi-check ms-auto"></i>
+      </a>
+    </li>
+    <li>
+      <a class="dropdown-item current d-flex align-items-center" data-snftt-luz="default" href="#" aria-pressed="false">
+        <span class="small">
+          <i class="bi bi-circle-half" data-snftt-luz-icon="default"></i>
+        </span>
+        <span class="small ms-3">Default</span>
+        <i class="bi bi-check ms-auto"></i>
+      </a>
+    </li>
+  </ul>
+</li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <div class="container-xxl nftt-gutter nftt-layout">
+      <aside class="nftt-sidebar">
+        <div class="title d-none d-md-block">
+          <i class="bi bi-book"></i>&nbsp;&nbsp;<span>Table of contents</span>
+        </div>
+        <div id="sidebar" tabindex="-1" class="offcanvas-lg offcanvas-start" aria-labelledby="nfttSidebarOffcanvasLabel">
+            <!-- danirus sidebartemplate: "globaltoc.html" --><div class="offcanvas-header border-bottom">
+  <h5 class="offcanvas-title" id="nfttSidebarOffcanvasLabel">
+    Table of contents
+  </h5>
+  <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#sidebar"></button>
+</div>
+
+<div class="offcanvas-body">
+  <nav class="toc" aria-label="Main menu">
+    <div class="mb-3 p-1 pt-3 pb-4 border-bottom">
+      <input id="sidebar-filter" type="text" name="filter" class="form-control form-control-sm" placeholder="filter" aria-label="filter">
+    </div>
+    <p class="caption" role="heading"><span class="caption-text">Contenidos</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduccion.html">Introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="instalacion.html">Instalación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uso.html">Uso</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MVC.html">MVC (Modelo-Vista-Controlador)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Arquitectura de Red (Cliente-Servidor)</a></li>
+</ul>
+
+  </nav>
+  <template data-toggle-item-template>
+    <button class="btn btn-sm btn-link toctree-expand" type="button">
+      <i class="bi bi-caret-right"></i>
+      <span class="visually-hidden">Toggle menu contents</span>
+    </button>
+  </template>
+</div>
+        </div>
+      </aside>
+      <main class="nftt-main">
+        <article id="content" class="nftt-content" role="main">
+    <section id="arquitectura-de-red-cliente-servidor">
+<h1>Arquitectura de Red (Cliente-Servidor)<a class="headerlink" href="#arquitectura-de-red-cliente-servidor" title="Link to this heading">¶</a></h1>
+<p>La arquitectura de red Cliente-Servidor es un modelo de comunicación en el que un cliente realiza solicitudes a un servidor y el servidor proporciona respuestas a esas solicitudes. En el contexto de este proyecto, el servidor actúa como un punto centralizado que gestiona las solicitudes de los clientes y coordina la comunicación entre ellos.</p>
+<section id="servidor">
+<h2>Servidor<a class="headerlink" href="#servidor" title="Link to this heading">¶</a></h2>
+<p>El <strong>Servidor</strong> es el componente central de la arquitectura de red. Es responsable de escuchar las solicitudes de los clientes, procesarlas y enviar respuestas adecuadas. En este proyecto, el servidor utiliza sockets para establecer conexiones con los clientes y gestionar la comunicación entre ellos.</p>
+<p>El código relacionado con el Servidor se encuentra en el archivo <cite>servidor.py</cite>. Este archivo contiene las clases y funciones que definen el comportamiento del servidor, incluida la lógica para aceptar conexiones entrantes y manejar solicitudes de clientes.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># Alumno : Sebastian Sanchez Bentolila</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="c1"># Servidor - Aplicación {gestor de contactos}</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="c1"># Librerías </span>
+<span class="linenos"> 6</span><span class="kn">import</span> <span class="nn">socket</span>
+<span class="linenos"> 7</span><span class="kn">import</span> <span class="nn">threading</span>
+<span class="linenos"> 8</span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span><span class="c1"># Clases</span>
+<span class="linenos">11</span><span class="k">class</span> <span class="nc">Servidor</span><span class="p">:</span>
+<span class="linenos">12</span>    <span class="c1"># Servidor con socket</span>
+<span class="linenos">13</span>    
+<span class="linenos">14</span>    <span class="c1"># Atributos</span>
+<span class="linenos">15</span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">observador</span><span class="p">):</span>
+<span class="linenos">16</span>        <span class="bp">self</span><span class="o">.</span><span class="n">host</span> <span class="o">=</span> <span class="n">host</span>
+<span class="linenos">17</span>        <span class="bp">self</span><span class="o">.</span><span class="n">port</span> <span class="o">=</span> <span class="n">port</span>
+<span class="linenos">18</span>        <span class="bp">self</span><span class="o">.</span><span class="n">socket_servidor</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
+<span class="linenos">19</span>        <span class="bp">self</span><span class="o">.</span><span class="n">socket_servidor</span><span class="o">.</span><span class="n">bind</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">host</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">port</span><span class="p">))</span>
+<span class="linenos">20</span>        <span class="bp">self</span><span class="o">.</span><span class="n">clientes_conectados</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="linenos">21</span>        <span class="bp">self</span><span class="o">.</span><span class="n">observador</span> <span class="o">=</span> <span class="n">observador</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span>    <span class="c1"># Métodos </span>
+<span class="linenos">24</span>    <span class="k">def</span> <span class="nf">iniciar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="linenos">25</span>        <span class="k">try</span><span class="p">:</span>
+<span class="linenos">26</span>            <span class="bp">self</span><span class="o">.</span><span class="n">socket_servidor</span><span class="o">.</span><span class="n">listen</span><span class="p">()</span>
+<span class="linenos">27</span>            <span class="bp">self</span><span class="o">.</span><span class="n">observador</span><span class="o">.</span><span class="n">actualizar</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Servidor iniciado en </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">host</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">port</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos">28</span>
+<span class="linenos">29</span>            <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="linenos">30</span>                <span class="n">cliente</span><span class="p">,</span> <span class="n">direccion</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">socket_servidor</span><span class="o">.</span><span class="n">accept</span><span class="p">()</span>
+<span class="linenos">31</span>                <span class="bp">self</span><span class="o">.</span><span class="n">observador</span><span class="o">.</span><span class="n">actualizar</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cliente conectado desde </span><span class="si">{</span><span class="n">direccion</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos">32</span>                <span class="bp">self</span><span class="o">.</span><span class="n">clientes_conectados</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cliente</span><span class="p">)</span>
+<span class="linenos">33</span>
+<span class="linenos">34</span>                <span class="c1"># Iniciar un hilo para manejar la comunicación con el cliente</span>
+<span class="linenos">35</span>                <span class="n">hilo_cliente</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">atender_cliente</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">cliente</span><span class="p">,))</span>
+<span class="linenos">36</span>                <span class="n">hilo_cliente</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="linenos">37</span>        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="linenos">38</span>            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error al iniciar el servidor: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos">39</span>            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">40</span>
+<span class="linenos">41</span>    <span class="k">def</span> <span class="nf">atender_cliente</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cliente</span><span class="p">):</span>
+<span class="linenos">42</span>        <span class="k">try</span><span class="p">:</span>
+<span class="linenos">43</span>            <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="linenos">44</span>                <span class="n">datos</span> <span class="o">=</span> <span class="n">cliente</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span>
+<span class="linenos">45</span>                <span class="k">if</span> <span class="ow">not</span> <span class="n">datos</span><span class="p">:</span>
+<span class="linenos">46</span>                    <span class="k">break</span>
+<span class="linenos">47</span>                <span class="n">mensaje</span> <span class="o">=</span> <span class="n">datos</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+<span class="linenos">48</span>                <span class="bp">self</span><span class="o">.</span><span class="n">observador</span><span class="o">.</span><span class="n">actualizar</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mensaje recibido: </span><span class="si">{</span><span class="n">mensaje</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos">49</span>        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="linenos">50</span>            <span class="bp">self</span><span class="o">.</span><span class="n">observador</span><span class="o">.</span><span class="n">actualizar</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error al atender cliente: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos">51</span>        <span class="k">finally</span><span class="p">:</span>
+<span class="linenos">52</span>            <span class="n">cliente</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="linenos">53</span>            <span class="bp">self</span><span class="o">.</span><span class="n">clientes_conectados</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">cliente</span><span class="p">)</span>
+<span class="linenos">54</span>
+<span class="linenos">55</span>    <span class="k">def</span> <span class="nf">detener</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="linenos">56</span>        <span class="k">try</span><span class="p">:</span>
+<span class="linenos">57</span>            <span class="bp">self</span><span class="o">.</span><span class="n">socket_servidor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="linenos">58</span>            <span class="bp">self</span><span class="o">.</span><span class="n">observador</span><span class="o">.</span><span class="n">actualizar</span><span class="p">(</span><span class="s2">&quot;Servidor detenido&quot;</span><span class="p">)</span>
+<span class="linenos">59</span>        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="linenos">60</span>            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error al detener el servidor: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos">61</span>            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>      
+</pre></div>
+</div>
+</section>
+<section id="cliente">
+<h2>Cliente<a class="headerlink" href="#cliente" title="Link to this heading">¶</a></h2>
+<p>El <strong>Cliente</strong> es el componente que realiza solicitudes al servidor y recibe respuestas. Cada instancia del cliente se conecta al servidor a través de un socket y envía mensajes para solicitar información o realizar acciones específicas.</p>
+<p>El código relacionado con el Cliente se encuentra en el archivo <cite>cliente.py</cite>. Este archivo contiene las clases y funciones que definen el comportamiento del cliente, incluida la lógica para establecer conexiones con el servidor y enviar solicitudes.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># Alumno : Sebastian Sanchez Bentolila</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="c1"># Cliente - Aplicación {gestor de contactos}</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="c1"># Librerías</span>
+<span class="linenos"> 6</span><span class="kn">import</span> <span class="nn">socket</span>
+<span class="linenos"> 7</span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span><span class="c1"># Clases </span>
+<span class="linenos">10</span><span class="k">class</span> <span class="nc">Cliente</span><span class="p">:</span>
+<span class="linenos">11</span>    <span class="c1"># Cliente </span>
+<span class="linenos">12</span>  
+<span class="linenos">13</span>    <span class="c1"># Atributos </span>
+<span class="linenos">14</span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">):</span>
+<span class="linenos">15</span>        <span class="bp">self</span><span class="o">.</span><span class="n">host</span> <span class="o">=</span> <span class="n">host</span>
+<span class="linenos">16</span>        <span class="bp">self</span><span class="o">.</span><span class="n">port</span> <span class="o">=</span> <span class="n">port</span>
+<span class="linenos">17</span>        <span class="bp">self</span><span class="o">.</span><span class="n">socket_cliente</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
+<span class="linenos">18</span>        <span class="bp">self</span><span class="o">.</span><span class="n">conectar</span><span class="p">()</span>
+<span class="linenos">19</span>
+<span class="linenos">20</span>    <span class="c1"># Métodos</span>
+<span class="linenos">21</span>    <span class="k">def</span> <span class="nf">conectar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="linenos">22</span>        <span class="k">try</span><span class="p">:</span>
+<span class="linenos">23</span>            <span class="bp">self</span><span class="o">.</span><span class="n">socket_cliente</span><span class="o">.</span><span class="n">connect</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">host</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">port</span><span class="p">))</span>
+<span class="linenos">24</span>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Conexión establecida con el servidor.&quot;</span><span class="p">)</span>
+<span class="linenos">25</span>        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="linenos">26</span>            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error al conectar con el servidor: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos">27</span>            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">28</span>
+<span class="linenos">29</span>    <span class="k">def</span> <span class="nf">enviar_mensaje</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mensaje</span><span class="p">):</span>
+<span class="linenos">30</span>        <span class="k">try</span><span class="p">:</span>
+<span class="linenos">31</span>            <span class="bp">self</span><span class="o">.</span><span class="n">socket_cliente</span><span class="o">.</span><span class="n">sendall</span><span class="p">(</span><span class="n">mensaje</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span>
+<span class="linenos">32</span>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mensaje enviado al servidor.&quot;</span><span class="p">)</span>
+<span class="linenos">33</span>        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="linenos">34</span>            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error al enviar mensaje al servidor: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos">35</span>            
+<span class="linenos">36</span>    <span class="k">def</span> <span class="nf">recibir_mensaje</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="linenos">37</span>        <span class="k">try</span><span class="p">:</span>
+<span class="linenos">38</span>            <span class="n">datos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">socket_cliente</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span>
+<span class="linenos">39</span>            <span class="n">mensaje_recibido</span> <span class="o">=</span> <span class="n">datos</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+<span class="linenos">40</span>            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mensaje recibido del servidor: </span><span class="si">{</span><span class="n">mensaje_recibido</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos">41</span>        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="linenos">42</span>            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error al recibir mensaje del servidor: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos">43</span>
+<span class="linenos">44</span>    <span class="k">def</span> <span class="nf">cerrar_conexion</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="linenos">45</span>        <span class="k">try</span><span class="p">:</span>
+<span class="linenos">46</span>            <span class="bp">self</span><span class="o">.</span><span class="n">socket_cliente</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="linenos">47</span>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Conexión cerrada correctamente.&quot;</span><span class="p">)</span>
+<span class="linenos">48</span>        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="linenos">49</span>            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error al cerrar la conexión: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+</article>
+        
+          <aside class="nftt-toc">
+            <div class="mt-3 mb-1 my-lg-0 ps-xl-3 text-muted">
+              <button class="btn btn-link link-dark p-md-0 mb-2 mb-md-0 text-decoration-none nftt-toc-toggle d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#tocContents" aria-expanded="false" aria-controls="tocContents"
+              >On this page <i class="ms-2 bi bi-chevron-expand"></i></button>
+              <div class="title d-none d-md-block">
+                <i class="bi bi-file-earmark-text"></i>&nbsp;&nbsp;<span class="small">On this page</span>
+              </div>
+              <hr class="d-none d-md-block my-2">
+              <div class="collapse nftt-toc-collapse" id="tocContents">
+                <nav id="TableOfContents">
+                  <ul>
+<li><a class="reference internal" href="#">Arquitectura de Red (Cliente-Servidor)</a><ul>
+<li><a class="reference internal" href="#servidor">Servidor</a></li>
+<li><a class="reference internal" href="#cliente">Cliente</a></li>
+</ul>
+</li>
+</ul>
+
+                </nav>
+              </div>
+            </div>
+          </aside>
+        
+      </main>
+    </div>
+
+    <footer class="nftt-footer">
+      <nav id="paginator" class="py-4" aria-label="Documentation navigation">
+    <div class="container">
+      <ul class="pagination justify-content-between mb-0"><li class="page-item">
+            <a href="MVC.html" class="d-flex px-5 align-items-end" rel="prev" aria-label="Previous page: MVC (Modelo-Vista-Controlador)">
+              <span class="prev-page"><i class="bi bi-caret-left"></i></span>
+              <div class="d-flex flex-column">
+                <span class="text-small text-start text-muted">Previous</span>
+                <span class="underline">MVC (Modelo-Vista-Controlador)</span>
+              </div>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </nav>
+
+      <div class="py-5 px-4 px-md-3">
+  <div class="container">
+    
+
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <a class="brand-text d-inline-flex align-items-center mb-2 text-decoration-none" href="/" aria-label="Nefertiti-for-Sphinx">
+          <span class="fs-6 fw-bold">Gestor de Contactos</span>
+        </a>
+        
+          <ul class="list-unstyled small text-muted">
+            <li>2024, Sebastian Sanchez Bentolila</li>
+          </ul>
+        
+        
+        <div class="built-with pt-2">
+          Built with <a href="http://sphinx-doc.org">Sphinx 7.2.6</a> and <a href="https://github.com/danirus/sphinx-nefertiti">Nefertiti 0.2.1</a>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+    </footer>
+    <script src="_static/documentation_options.js?v=9c9b61ad"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/translations.js?v=efdbd0b9"></script>
+
+    <script type="text/javascript" src="_static/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="_static/sphinx-nefertiti.min.js"></script>
+    
+  </body>
+</html>

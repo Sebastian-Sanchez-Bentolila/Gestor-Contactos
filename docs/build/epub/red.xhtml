@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Arquitectura de Red (Cliente-Servidor)</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8e8a900e" />
+    <link rel="stylesheet" type="text/css" href="_static/epub.css?v=1d6d279e" /> 
+  </head><body>
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body" role="main">
+            
+  <section id="arquitectura-de-red-cliente-servidor">
+<h1>Arquitectura de Red (Cliente-Servidor)</h1>
+<p>La arquitectura de red Cliente-Servidor es un modelo de comunicación en el que un cliente realiza solicitudes a un servidor y el servidor proporciona respuestas a esas solicitudes. En el contexto de este proyecto, el servidor actúa como un punto centralizado que gestiona las solicitudes de los clientes y coordina la comunicación entre ellos.</p>
+<section id="servidor">
+<h2>Servidor</h2>
+<p>El <strong>Servidor</strong> es el componente central de la arquitectura de red. Es responsable de escuchar las solicitudes de los clientes, procesarlas y enviar respuestas adecuadas. En este proyecto, el servidor utiliza sockets para establecer conexiones con los clientes y gestionar la comunicación entre ellos.</p>
+<p>El código relacionado con el Servidor se encuentra en el archivo <cite>servidor.py</cite>. Este archivo contiene las clases y funciones que definen el comportamiento del servidor, incluida la lógica para aceptar conexiones entrantes y manejar solicitudes de clientes.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># Alumno : Sebastian Sanchez Bentolila</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="c1"># Servidor - Aplicación {gestor de contactos}</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="c1"># Librerías </span>
+<span class="linenos"> 6</span><span class="kn">import</span> <span class="nn">socket</span>
+<span class="linenos"> 7</span><span class="kn">import</span> <span class="nn">threading</span>
+<span class="linenos"> 8</span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span><span class="c1"># Clases</span>
+<span class="linenos">11</span><span class="k">class</span> <span class="nc">Servidor</span><span class="p">:</span>
+<span class="linenos">12</span>    <span class="c1"># Servidor con socket</span>
+<span class="linenos">13</span>    
+<span class="linenos">14</span>    <span class="c1"># Atributos</span>
+<span class="linenos">15</span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">observador</span><span class="p">):</span>
+<span class="linenos">16</span>        <span class="bp">self</span><span class="o">.</span><span class="n">host</span> <span class="o">=</span> <span class="n">host</span>
+<span class="linenos">17</span>        <span class="bp">self</span><span class="o">.</span><span class="n">port</span> <span class="o">=</span> <span class="n">port</span>
+<span class="linenos">18</span>        <span class="bp">self</span><span class="o">.</span><span class="n">socket_servidor</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
+<span class="linenos">19</span>        <span class="bp">self</span><span class="o">.</span><span class="n">socket_servidor</span><span class="o">.</span><span class="n">bind</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">host</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">port</span><span class="p">))</span>
+<span class="linenos">20</span>        <span class="bp">self</span><span class="o">.</span><span class="n">clientes_conectados</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="linenos">21</span>        <span class="bp">self</span><span class="o">.</span><span class="n">observador</span> <span class="o">=</span> <span class="n">observador</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span>    <span class="c1"># Métodos </span>
+<span class="linenos">24</span>    <span class="k">def</span> <span class="nf">iniciar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="linenos">25</span>        <span class="k">try</span><span class="p">:</span>
+<span class="linenos">26</span>            <span class="bp">self</span><span class="o">.</span><span class="n">socket_servidor</span><span class="o">.</span><span class="n">listen</span><span class="p">()</span>
+<span class="linenos">27</span>            <span class="bp">self</span><span class="o">.</span><span class="n">observador</span><span class="o">.</span><span class="n">actualizar</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Servidor iniciado en </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">host</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">port</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos">28</span>
+<span class="linenos">29</span>            <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="linenos">30</span>                <span class="n">cliente</span><span class="p">,</span> <span class="n">direccion</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">socket_servidor</span><span class="o">.</span><span class="n">accept</span><span class="p">()</span>
+<span class="linenos">31</span>                <span class="bp">self</span><span class="o">.</span><span class="n">observador</span><span class="o">.</span><span class="n">actualizar</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cliente conectado desde </span><span class="si">{</span><span class="n">direccion</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos">32</span>                <span class="bp">self</span><span class="o">.</span><span class="n">clientes_conectados</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cliente</span><span class="p">)</span>
+<span class="linenos">33</span>
+<span class="linenos">34</span>                <span class="c1"># Iniciar un hilo para manejar la comunicación con el cliente</span>
+<span class="linenos">35</span>                <span class="n">hilo_cliente</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">atender_cliente</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">cliente</span><span class="p">,))</span>
+<span class="linenos">36</span>                <span class="n">hilo_cliente</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="linenos">37</span>        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="linenos">38</span>            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error al iniciar el servidor: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos">39</span>            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">40</span>
+<span class="linenos">41</span>    <span class="k">def</span> <span class="nf">atender_cliente</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cliente</span><span class="p">):</span>
+<span class="linenos">42</span>        <span class="k">try</span><span class="p">:</span>
+<span class="linenos">43</span>            <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="linenos">44</span>                <span class="n">datos</span> <span class="o">=</span> <span class="n">cliente</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span>
+<span class="linenos">45</span>                <span class="k">if</span> <span class="ow">not</span> <span class="n">datos</span><span class="p">:</span>
+<span class="linenos">46</span>                    <span class="k">break</span>
+<span class="linenos">47</span>                <span class="n">mensaje</span> <span class="o">=</span> <span class="n">datos</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+<span class="linenos">48</span>                <span class="bp">self</span><span class="o">.</span><span class="n">observador</span><span class="o">.</span><span class="n">actualizar</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mensaje recibido: </span><span class="si">{</span><span class="n">mensaje</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos">49</span>        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="linenos">50</span>            <span class="bp">self</span><span class="o">.</span><span class="n">observador</span><span class="o">.</span><span class="n">actualizar</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error al atender cliente: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos">51</span>        <span class="k">finally</span><span class="p">:</span>
+<span class="linenos">52</span>            <span class="n">cliente</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="linenos">53</span>            <span class="bp">self</span><span class="o">.</span><span class="n">clientes_conectados</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">cliente</span><span class="p">)</span>
+<span class="linenos">54</span>
+<span class="linenos">55</span>    <span class="k">def</span> <span class="nf">detener</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="linenos">56</span>        <span class="k">try</span><span class="p">:</span>
+<span class="linenos">57</span>            <span class="bp">self</span><span class="o">.</span><span class="n">socket_servidor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="linenos">58</span>            <span class="bp">self</span><span class="o">.</span><span class="n">observador</span><span class="o">.</span><span class="n">actualizar</span><span class="p">(</span><span class="s2">&quot;Servidor detenido&quot;</span><span class="p">)</span>
+<span class="linenos">59</span>        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="linenos">60</span>            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error al detener el servidor: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos">61</span>            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>      
+</pre></div>
+</div>
+</section>
+<section id="cliente">
+<h2>Cliente</h2>
+<p>El <strong>Cliente</strong> es el componente que realiza solicitudes al servidor y recibe respuestas. Cada instancia del cliente se conecta al servidor a través de un socket y envía mensajes para solicitar información o realizar acciones específicas.</p>
+<p>El código relacionado con el Cliente se encuentra en el archivo <cite>cliente.py</cite>. Este archivo contiene las clases y funciones que definen el comportamiento del cliente, incluida la lógica para establecer conexiones con el servidor y enviar solicitudes.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># Alumno : Sebastian Sanchez Bentolila</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="c1"># Cliente - Aplicación {gestor de contactos}</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="c1"># Librerías</span>
+<span class="linenos"> 6</span><span class="kn">import</span> <span class="nn">socket</span>
+<span class="linenos"> 7</span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span><span class="c1"># Clases </span>
+<span class="linenos">10</span><span class="k">class</span> <span class="nc">Cliente</span><span class="p">:</span>
+<span class="linenos">11</span>    <span class="c1"># Cliente </span>
+<span class="linenos">12</span>  
+<span class="linenos">13</span>    <span class="c1"># Atributos </span>
+<span class="linenos">14</span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">):</span>
+<span class="linenos">15</span>        <span class="bp">self</span><span class="o">.</span><span class="n">host</span> <span class="o">=</span> <span class="n">host</span>
+<span class="linenos">16</span>        <span class="bp">self</span><span class="o">.</span><span class="n">port</span> <span class="o">=</span> <span class="n">port</span>
+<span class="linenos">17</span>        <span class="bp">self</span><span class="o">.</span><span class="n">socket_cliente</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
+<span class="linenos">18</span>        <span class="bp">self</span><span class="o">.</span><span class="n">conectar</span><span class="p">()</span>
+<span class="linenos">19</span>
+<span class="linenos">20</span>    <span class="c1"># Métodos</span>
+<span class="linenos">21</span>    <span class="k">def</span> <span class="nf">conectar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="linenos">22</span>        <span class="k">try</span><span class="p">:</span>
+<span class="linenos">23</span>            <span class="bp">self</span><span class="o">.</span><span class="n">socket_cliente</span><span class="o">.</span><span class="n">connect</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">host</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">port</span><span class="p">))</span>
+<span class="linenos">24</span>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Conexión establecida con el servidor.&quot;</span><span class="p">)</span>
+<span class="linenos">25</span>        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="linenos">26</span>            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error al conectar con el servidor: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos">27</span>            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">28</span>
+<span class="linenos">29</span>    <span class="k">def</span> <span class="nf">enviar_mensaje</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mensaje</span><span class="p">):</span>
+<span class="linenos">30</span>        <span class="k">try</span><span class="p">:</span>
+<span class="linenos">31</span>            <span class="bp">self</span><span class="o">.</span><span class="n">socket_cliente</span><span class="o">.</span><span class="n">sendall</span><span class="p">(</span><span class="n">mensaje</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span>
+<span class="linenos">32</span>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mensaje enviado al servidor.&quot;</span><span class="p">)</span>
+<span class="linenos">33</span>        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="linenos">34</span>            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error al enviar mensaje al servidor: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos">35</span>            
+<span class="linenos">36</span>    <span class="k">def</span> <span class="nf">recibir_mensaje</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="linenos">37</span>        <span class="k">try</span><span class="p">:</span>
+<span class="linenos">38</span>            <span class="n">datos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">socket_cliente</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span>
+<span class="linenos">39</span>            <span class="n">mensaje_recibido</span> <span class="o">=</span> <span class="n">datos</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+<span class="linenos">40</span>            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mensaje recibido del servidor: </span><span class="si">{</span><span class="n">mensaje_recibido</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos">41</span>        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="linenos">42</span>            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error al recibir mensaje del servidor: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos">43</span>
+<span class="linenos">44</span>    <span class="k">def</span> <span class="nf">cerrar_conexion</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="linenos">45</span>        <span class="k">try</span><span class="p">:</span>
+<span class="linenos">46</span>            <span class="bp">self</span><span class="o">.</span><span class="n">socket_cliente</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="linenos">47</span>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Conexión cerrada correctamente.&quot;</span><span class="p">)</span>
+<span class="linenos">48</span>        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="linenos">49</span>            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error al cerrar la conexión: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  </body>
+</html>

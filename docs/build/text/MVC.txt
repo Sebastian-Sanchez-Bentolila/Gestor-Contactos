@@ -1,0 +1,477 @@
+MVC (Modelo-Vista-Controlador)
+******************************
+
+El patrón Modelo-Vista-Controlador (MVC) es un patrón de diseño de
+software que se utiliza comúnmente para desarrollar interfaces de
+usuario. Consiste en tres componentes principales: el **Modelo**, la
+**Vista** y el **Controlador**. Cada uno de estos componentes
+desempeña un papel específico en la aplicación y ayuda a organizar el
+código de manera modular y mantenible.
+
+
+Modelo
+======
+
+El **Modelo** representa los datos y la lógica de negocio de la
+aplicación. Es responsable de acceder y manipular los datos
+subyacentes, así como de realizar operaciones como validaciones y
+cálculos.
+
+El código relacionado con el Modelo se encuentra en el archivo
+*modelo.py*. Este archivo contiene la clase *BaseDatos()* que permiten
+el manejo de la base de datos local SQLite3.
+
+   # Alumno : Sebastian Sanchez Bentolila 
+
+   # Modelo - Aplicación {gestor de contactos}
+
+   # Librerías
+   import sqlite3
+   from datetime import datetime
+               
+   # Clases        
+   class BaseDatos():
+       # Clase para el manejo de la base de datos
+       def __init__(self,):
+           self.con = sqlite3.connect('contactos.db')
+           self.cursor = self.con.cursor()
+           self.sql = ""
+           self.observadores = []
+           self.verificar_tabla()
+           
+       # Métodos
+       def crear_tabla(self,):
+           # Crear la tabla en la db
+           self.sql = '''CREATE TABLE contactos(
+                         id INTEGER PRIMARY KEY AUTOINCREMENT,
+                         telefono INT,
+                         nombre TEXT,
+                         empresa TEXT,
+                         mail TEXT,
+                         relacion TEXT);'''
+           self.cursor.execute(self.sql)
+           self.guardar_cambios()
+           
+       def guardar_cambios(self,):
+           # Guardar los cambios 
+           self.con.commit()
+       
+       def cerrar_db(self,):
+           # Cerrando la db
+           self.con.close()
+           
+       def insertar(self, telefono:int, nombre:str, empresa:str, mail:str, relacion:str):
+           # Inserta un nuevo contacto en la db
+           numero = int(telefono)
+           data = (numero, nombre, empresa, mail, relacion)
+           self.sql = '''INSERT INTO contactos(telefono, nombre, empresa, mail, relacion) 
+                         VALUES(?, ?, ?, ?, ?)'''
+           self.cursor.execute(self.sql, data)
+           self.guardar_cambios()
+           self.notificar_observadores(f"Contacto agregado: {nombre}")
+           return self.cursor.lastrowid
+            
+       def seleccionar(self, nombre):
+           # Selecciona algun contacto de la db
+           data = (nombre,)
+           self.sql = "SELECT * FROM contactos WHERE nombre = ?;"
+           self.cursor.execute(self.sql, data)
+           rows = self.cursor.fetchall()
+           self.guardar_cambios()
+           return rows
+       
+       def actualizar(self, contacto_id=int, telefono=int, nombre="", empresa="", mail="", relacion=""):
+           # Actualiza algun elemento de un contacto de la db
+           self.sql = "UPDATE contactos SET "
+           data = []
+           
+           # Verificamos que haya ingresado dato para modificarlo, caso contrario quedara igual
+           if telefono:
+               self.sql = self.sql + "telefono=?, "  
+               data.append(telefono) 
+           if nombre != "":
+               self.sql = self.sql + "nombre=?, "
+               data.append(nombre)
+           if empresa != "":
+               self.sql = self.sql + "empresa=?, "
+               data.append(empresa)
+           if mail != "":
+               self.sql = self.sql + "mail=?, "
+               data.append(mail)
+           if relacion != "":
+               self.sql = self.sql + "relacion=?, "
+               data.append(relacion)
+           
+           # Elimina la coma y el espacion final del comando de SQL   
+           self.sql = self.sql.rstrip(", ")
+           
+           data.append(contacto_id)   
+           data_tupla = tuple(data)
+           self.sql = self.sql + " WHERE id=?;"
+           self.cursor.execute(self.sql, data_tupla)
+           self.guardar_cambios()
+           self.notificar_observadores(f"Contacto modificado: {nombre}, id: {contacto_id}")
+           
+       def borrar(self, nombre):
+           # Borra algun contacto de la db
+           data = (nombre,)
+           self.sql = "DELETE from contactos where nombre = ?;"
+           self.cursor.execute(self.sql, data)
+           self.guardar_cambios()
+           self.notificar_observadores(f"Contacto borrado: {nombre}")
+           
+       def ordenar_contactos_por_nombre(self,):
+           # Ordena los contactos por nombre
+           self.sql = "SELECT * FROM contactos ORDER BY nombre;"
+           self.cursor.execute(self.sql)
+           rows = self.cursor.fetchall()      
+           self.guardar_cambios()
+           return rows
+       
+       def verificar_tabla(self,):
+           # Verifica si la tabla 'contactos' existe
+           self.cursor.execute('''SELECT count(name) FROM sqlite_master WHERE type='table' AND name='contactos';''')
+           
+           if self.cursor.fetchone()[0] == 0: # Si no existe, la crea
+               self.crear_tabla()
+               
+       def verificar_existencia_contacto(self, nombre):
+           # Verifica la existencia de un contacto en la tabla por nombre
+           data = (nombre,)
+           self.sql = "SELECT COUNT(*) FROM contactos WHERE nombre = ?;"
+           self.cursor.execute(self.sql, data)
+           count = self.cursor.fetchone()[0]
+           return count > 0
+
+       def verificar_existencia_contacto_por_id(self, id_contacto):
+           # Verifica la existencia de un contacto en la tabla por ID
+           data = (id_contacto,)
+           self.sql = "SELECT COUNT(*) FROM contactos WHERE id = ?;"
+           self.cursor.execute(self.sql, data)
+           count = self.cursor.fetchone()[0]
+           return count > 0
+       
+       # Métodos del observador
+       def agregar_observador(self, observador):
+           self.observadores.append(observador)
+
+       def eliminar_observador(self, observador):
+           self.observadores.remove(observador)
+
+       def notificar_observadores(self, mensaje):
+           for observador in self.observadores:
+               observador.actualizar(mensaje)
+
+
+Vista
+=====
+
+La **Vista** es la interfaz de usuario con la que interactúan los
+usuarios finales. Es responsable de presentar los datos al usuario de
+una manera comprensible y de capturar las acciones del usuario, como
+hacer clic en botones o introducir datos en formularios.
+
+El código relacionado con la Vista se encuentra en el archivo
+*vista.py*. Este archivo contiene la clase *ventana_grafica()* donde
+con Tkinter implementamos la ventana gráfica con sus Widgets y metodos
+necesarios.
+
+   # Alumno : Sebastian Sanchez Bentolila 
+
+   # Vista - Aplicación {gestor de contactos}
+
+   # Librerías
+   from tkinter import Tk, messagebox, Scrollbar, Label, Entry, Button, Text, VERTICAL, END
+   from os import getcwd, remove
+   from modelo import BaseDatos
+   from modulos.expresiones import validar_expresiones
+   from log.observador import ObservadorRegistro
+   from red.servidor import Servidor
+
+   # Clases
+   class ventana_grafica():
+       # Clase de la ventana gráfica 
+       
+       # Configuracion de la ventana principal
+       def __init__(self, root):
+           self.ventana = root
+           self.db = BaseDatos()
+           self.observador_registro = ObservadorRegistro('log\\registro_log.txt')
+           self.db.agregar_observador(self.observador_registro)
+           self.ventana.title("Gestor de Contactos")
+           self.ventana.iconbitmap('{}\\archivos\\icon\\libro_contacto.ico'.format(getcwd()))
+           self.ventana.configure(bg="blue", cursor='tcross')
+           self.ventana.resizable(0, 0)
+           self.Widgets()
+           self.ventana.mainloop()
+           
+       # Métodos 
+       def Widgets(self,):
+           # Accesorios de la ventana gráfica
+           # Sección - Agregar contacto
+           Label(self.ventana, text="Teléfono:", bg="blue", fg="white").grid(row=1, column=0)
+           self.telefono_entry = Entry(self.ventana, bg="lightblue")
+           self.telefono_entry.grid(row=1, column=1)
+
+           Label(self.ventana, text="Nombre:", bg="blue", fg="white").grid(row=2, column=0)
+           self.nombre_entry = Entry(self.ventana, bg="lightblue")
+           self.nombre_entry.grid(row=2, column=1)
+
+           Label(self.ventana, text="Empresa:", bg="blue", fg="white").grid(row=3, column=0)
+           self.empresa_entry = Entry(self.ventana, bg="lightblue")
+           self.empresa_entry.grid(row=3, column=1)
+
+           Label(self.ventana, text="Correo:", bg="blue", fg="white").grid(row=4, column=0)
+           self.mail_entry = Entry(self.ventana,bg="lightblue")
+           self.mail_entry.grid(row=4, column=1)
+
+           Label(self.ventana, text="Relacion:", bg="blue", fg="white").grid(row=5, column=0)
+           self.relacion_entry = Entry(self.ventana, bg="lightblue")
+           self.relacion_entry.grid(row=5, column=1)
+
+           self.agregar_btn = Button(self.ventana, text="Agregar Contacto", bg="gray", fg="black", command=self.agregar_contacto)
+           self.agregar_btn.grid(row=6, column=0, columnspan=2)
+           
+           # Sección - Buscar Contacto
+           Label(self.ventana, text="Buscar por nombre:", bg="blue", fg="white").grid(row=8, column=0)
+           self.nombre_buscar_entry = Entry(self.ventana, bg="lightblue")
+           self.nombre_buscar_entry.grid(row=8, column=1)
+
+           self.buscar_btn = Button(self.ventana, text="Buscar Contacto", bg="gray", fg="black", command=self.seleccionar_contacto)
+           self.buscar_btn.grid(row=9, column=0, columnspan=2)
+           
+           # Sección - Resultado de la busqueda de contacto
+           self.resultado_text = Text(self.ventana, height=10, width=40, bg="lightblue", fg="black")
+           self.resultado_text.grid(row=10, column=0, columnspan=2)
+           
+           # Sección - Borrar Contacto
+           Label(self.ventana, text="Borrar por nombre:", bg="blue", fg="white").grid(row=5, column=4)
+           self.nombre_borrar_entry = Entry(self.ventana, bg="lightblue")
+           self.nombre_borrar_entry.grid(row=5, column=5)
+
+           self.borrar_btn = Button(self.ventana, text="Borrar Contacto", bg="gray", fg="black", command=self.borrar_contacto)
+           self.borrar_btn.grid(row=6, column=4, columnspan=2)
+           
+           # Seccion - Modificar Contacto
+           Label(self.ventana, text="ID del contacto a modificar:", bg="blue", fg="white").grid(row=0, column=2)
+           self.id_modificar_entry = Entry(self.ventana, bg="lightblue")
+           self.id_modificar_entry.grid(row=0, column=3)
+
+           Label(self.ventana, text="Nuevo teléfono:", bg="blue", fg="white").grid(row=1, column=2)
+           self.nuevo_telefono_entry = Entry(self.ventana, bg="lightblue")
+           self.nuevo_telefono_entry.grid(row=1, column=3)
+
+           Label(self.ventana, text="Nuevo nombre:", bg="blue", fg="white").grid(row=2, column=2)
+           self.nuevo_nombre_entry = Entry(self.ventana, bg="lightblue")
+           self.nuevo_nombre_entry.grid(row=2, column=3)
+
+           Label(self.ventana, text="Nueva empresa:", bg="blue", fg="white").grid(row=3, column=2)
+           self.nueva_empresa_entry = Entry(self.ventana, bg="lightblue")
+           self.nueva_empresa_entry.grid(row=3, column=3)
+
+           Label(self.ventana, text="Nuevo correo:", bg="blue", fg="white").grid(row=4, column=2)
+           self.nuevo_mail_entry = Entry(self.ventana, bg="lightblue")
+           self.nuevo_mail_entry.grid(row=4, column=3)
+
+           Label(self.ventana, text="Nueva relacion:", bg="blue", fg="white").grid(row=5, column=2)
+           self.nuevo_relacion_entry = Entry(self.ventana, bg="lightblue")
+           self.nuevo_relacion_entry.grid(row=5, column=3)
+
+           self.modificar_btn = Button(self.ventana, text="Modificar Contacto", bg="gray", fg="black", command=self.modificar_contacto)
+           self.modificar_btn.grid(row=6, column=2, columnspan=2)
+           
+           # Sección - Lista de Contactos
+           self.lista_btn = Button(self.ventana, text="Ver contactos", bg="gray", fg="black", command=self.abrir_lista_contactos)
+           self.lista_btn.grid(row=9, column=2, columnspan=2)
+
+           self.lista_text = Text(self.ventana, height=10, width=40, bg="lightblue", fg="black")
+           self.lista_text.grid(row=10, column=3, columnspan=3)
+           self.agregar_scrollbar()
+           
+           # Agregando una columna vacia para generar una separación entre arriba y abajo
+           self.espacio = Label(self.ventana, text="", bg="blue", fg="white").grid(row=7, column=0, columnspan=2)
+           
+       def agregar_scrollbar(self,):
+           # Scrollbar para la Sección de lista de contactos
+           self.scrollbar = Scrollbar(self.ventana, orient=VERTICAL ,command=self.lista_text.yview)
+           self.scrollbar.grid(row=10, column=6, rowspan=3, sticky='ns')
+           self.lista_text.config(yscrollcommand=self.scrollbar.set)
+           
+       def modificar_contacto(self,):
+           # Comando para modificar algun contacto
+           id_contacto = self.id_modificar_entry.get()
+           nuevo_telefono = self.nuevo_telefono_entry.get()
+           nuevo_nombre = self.nuevo_nombre_entry.get()
+           nueva_empresa = self.nueva_empresa_entry.get()
+           nuevo_mail = self.nuevo_mail_entry.get()
+           nuevo_relacion = self.nuevo_relacion_entry.get()
+           
+           if id_contacto and (nuevo_telefono or nuevo_nombre or nueva_empresa or nuevo_mail or nuevo_relacion):
+               expresiones_validas = validar_expresiones(nuevo_telefono, nuevo_nombre, nuevo_mail)
+               if expresiones_validas:
+                   x, y, z = expresiones_validas # x,y,z son las validaciónes de esos campos (boleanos)
+                   if x and y and z:
+                       try:
+                           if self.db.verificar_existencia_contacto_por_id(id_contacto):
+                               self.db.actualizar(int(id_contacto), int(nuevo_telefono), nuevo_nombre, nueva_empresa, nuevo_mail, nuevo_relacion)
+                               messagebox.showinfo("Éxito", "Contacto modificado con éxito")
+                           else:
+                               messagebox.showerror("Error", f"No se encontró un contacto con el ID '{id_contacto}'")
+                       except Exception as e:
+                           messagebox.showerror("Error", f"Error al modificar el contacto: {str(e)}")
+                   else:
+                       pass
+           else:
+               messagebox.showerror("Error", "ID del contacto y el telefono son campos obligatorios")
+               
+       def agregar_contacto(self,):
+           # Comando para agregar un contacto a la db
+           telefono = self.telefono_entry.get()
+           nombre = self.nombre_entry.get()
+           empresa = self.empresa_entry.get()
+           mail = self.mail_entry.get()
+           relacion = self.relacion_entry.get()
+           
+           if telefono and nombre:
+               expresiones_validas = validar_expresiones(telefono, nombre, mail)
+               if expresiones_validas:
+                   x, y, z = expresiones_validas # x,y,z son las validaciónes de esos campos (boleanos)
+                   if x and y and z:
+                       try:
+                           self.db.insertar(telefono, nombre, empresa, mail, relacion)
+                           messagebox.showinfo("Éxito", "Contacto agregado con éxito")
+                       except Exception as e:
+                           messagebox.showerror("Error", f"Error al agregar el contacto: {str(e)}")
+               else:
+                   pass
+           else:
+               messagebox.showerror("Error", "El nombre y el teléfono son campos obligatorios")
+               
+       def seleccionar_contacto(self,):
+           # Comando para seleccionar y copiar la información del contacto
+           nombre = self.nombre_buscar_entry.get()
+           if nombre:
+               try:
+                   contactos = self.db.seleccionar(nombre)
+                   self.resultado_text.delete(1.0, END)  # Limpiar el texto existente
+                   if contactos:
+                       for contacto in contactos:
+                           self.resultado_text.insert(END, f"ID: {contacto[0]}\n")
+                           self.resultado_text.insert(END, f"Teléfono: {contacto[1]}\n")
+                           self.resultado_text.insert(END, f"Nombre: {contacto[2]}\n")
+                           self.resultado_text.insert(END, f"Empresa: {contacto[3]}\n")
+                           self.resultado_text.insert(END, f"Correo: {contacto[4]}\n")
+                           self.resultado_text.insert(END, f"Relacion: {contacto[5]}\n\n")
+                   else:
+                       self.resultado_text.insert(END, "No se encontraron contactos con ese nombre")
+               except Exception as e:
+                   messagebox.showerror("Error", f"Error al buscar el contacto: {str(e)}")
+           else:
+               messagebox.showerror("Error", "Por favor, ingresa un nombre para buscar")
+               
+       def borrar_contacto(self,):
+           # Comando para borrar algun contacto de la db
+           nombre = self.nombre_borrar_entry.get()
+           if nombre:
+               try:
+                   # Verificar si el contacto existe en la tabla
+                   if self.db.verificar_existencia_contacto(nombre):
+                       self.db.borrar(nombre)
+                       messagebox.showinfo("Éxito", f"Contacto '{nombre}' borrado con éxito")
+                   else:
+                       messagebox.showerror("Error", f"El contacto '{nombre}' no existe en la base de datos")
+               except Exception as e:
+                   messagebox.showerror("Error", f"Error al borrar el contacto: {str(e)}")
+           else:
+               messagebox.showerror("Error", "Por favor, ingresa un nombre para borrar")
+               
+       def abrir_lista_contactos(self,):
+           # Comando para abrir una lista con los contactos y mostrarlos al usuario
+           archivo = open("modulos\\lista_contactos.txt", "w")
+           lista_contactos = self.db.ordenar_contactos_por_nombre()
+
+           for i, x in enumerate(lista_contactos):
+               archivo.write(f"{x[2]}\n")
+               archivo.write(f"ID       : {x[0]}\n")
+               archivo.write(f"Telefono : {x[1]}\n")
+               archivo.write(f"Empresa  : {x[3]}\n")
+               archivo.write(f"Mail     : {x[4]}\n")
+               archivo.write(f"Relacion : {x[5]}")
+               
+               # Agregar una línea en blanco si no es la última iteración
+               if i < len(lista_contactos) - 1:
+                   archivo.write("\n\n")
+
+           archivo.close()
+       
+           archivo = open("modulos\\lista_contactos.txt", "r")
+           contenido = archivo.read()
+           archivo.close()
+           
+           if contenido:
+               try:
+                   self.lista_text.delete(1.0, END)  # Limpiar el texto existente
+                   self.lista_text.insert(END, f"{contenido}\n")
+               except Exception as e:
+                   messagebox.showerror("Error", "Error al cargar la base de datos")
+           else:
+               messagebox.showerror("Error", "Error")
+               
+       def cerrar_aplicacion(self,):
+           # Cerrar y quitar la ventana gráfica
+           self.db.cerrar_db()
+           self.ventana.destroy()
+           self.ventana.quit()
+
+
+Controlador
+===========
+
+El **Controlador** actúa como intermediario entre el Modelo y la
+Vista. Es responsable de interpretar las acciones del usuario y
+actualizar el Modelo en consecuencia. También actualiza la Vista para
+reflejar cualquier cambio en el Modelo.
+
+El código relacionado con el Controlador se encuentra en el archivo
+*controlador.py*. Este archivo contiene la función
+*iniciar_aplicacion()* la cual inicia la vista, el servidor y el
+cliente a la vez.
+
+   # Alumno : Sebastian Sanchez Bentolila
+
+   # Controlador - Aplicación {gestor de contactos}
+
+   # Librerías
+   from tkinter import Tk
+   from vista import ventana_grafica
+   from red.cliente import Cliente
+   from red.servidor import Servidor
+   from log.observador import ObservadorRegistro
+   import threading
+
+   # Bucle principal
+   def iniciar_aplicacion():
+       # Iniciar Servidor 
+       observador_registro = ObservadorRegistro('log\\registro_log.txt')
+       servidor = Servidor('192.168.56.1', 456, observador_registro)
+       hilo_servidor = threading.Thread(target=servidor.iniciar)
+       hilo_servidor.start()
+       #servidor.iniciar()
+       
+       # Cliente 
+       cliente = Cliente('192.168.56.1', 456)
+       mensaje_inicio = "Cliente conectado"
+       cliente.enviar_mensaje(mensaje_inicio)
+       
+       # Ventana Gráfica
+       root = Tk()       
+       app = ventana_grafica(root)
+       
+       # Cerrando Conexión
+       mensaje_cierre = "Cliente desconectado"
+       cliente.enviar_mensaje(mensaje_cierre)
+       cliente.cerrar_conexion()
+       
+       # Cerrando Servidor
+       servidor.detener()
+       hilo_servidor.join()

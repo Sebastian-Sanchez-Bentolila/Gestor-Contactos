@@ -1,0 +1,26 @@
+Instalación
+***********
+
+Para instalar My Project, sigue estos pasos:
+
+1. Clona el repositorio desde GitHub:
+
+         git clone https://github.com/Sebastian-Sanchez-Bentolila/Gestor-Contactos
+
+2. Navega al directorio del proyecto:
+
+         cd my-project
+
+3. Configura y activa un entorno virtual (opcional pero recomendado):
+
+         python3 -m venv venv
+         env\Scripts\activate # En Windows
+         source venv/bin/activate  # En Linux y Mac OS
+
+4. Instala las dependencias:
+
+         pip install -r requirements.txt
+
+5. Ejecuta la aplicación:
+
+         python main.py

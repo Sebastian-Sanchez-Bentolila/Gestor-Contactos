@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Estructura del Proyecto</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8e8a900e" />
+    <link rel="stylesheet" type="text/css" href="_static/epub.css?v=1d6d279e" /> 
+  </head><body>
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body" role="main">
+            
+  <section id="estructura-del-proyecto">
+<h1>Estructura del Proyecto</h1>
+<p>El proyecto está estructurado de la siguiente manera:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Gestor-Contactos/
+├──<span class="w"> </span>controlador.py
+├──<span class="w"> </span>main.py
+├──<span class="w"> </span>modelo.py
+├──<span class="w"> </span>vista.py
+├──<span class="w"> </span>modulos/
+│<span class="w">   </span>├──<span class="w"> </span>__pycache__/
+│<span class="w">       </span>├──<span class="w"> </span>__init__.cpython-310.pyc
+│<span class="w">       </span>└──<span class="w"> </span>expresiones.cpython-310.pyc
+│<span class="w">   </span>├──<span class="w"> </span>__init__.py
+│<span class="w">   </span>└──<span class="w"> </span>expresiones.py
+├──<span class="w"> </span>red/
+│<span class="w">   </span>├──<span class="w"> </span>__pycache__/
+│<span class="w">       </span>├──<span class="w"> </span>__init__.cpython-310.pyc
+│<span class="w">       </span>├──<span class="w"> </span>cliente.cpython-310.pyc
+│<span class="w">       </span>└──<span class="w"> </span>servidor.cpython-310.pyc
+│<span class="w">   </span>├──<span class="w"> </span>__init__.py
+│<span class="w">   </span>├──<span class="w"> </span>cliente.py
+│<span class="w">   </span>└──<span class="w"> </span>servidor.py
+├──<span class="w"> </span>log/
+│<span class="w">   </span>├──<span class="w"> </span>__pycache__/
+│<span class="w">       </span>├──<span class="w"> </span>__init__.cpython-310.pyc
+│<span class="w">       </span>└──<span class="w"> </span>observador.cpython-310.pyc
+│<span class="w">   </span>├──<span class="w"> </span>__init__.py
+│<span class="w">   </span>└──<span class="w"> </span>observador.py
+├──<span class="w"> </span>env/
+│<span class="w">   </span>├──<span class="w"> </span>Include/
+│<span class="w">   </span>├──<span class="w"> </span>Lib/
+│<span class="w">   </span>├──<span class="w"> </span>Scripts/
+│<span class="w">   </span>└──<span class="w"> </span>pyvenv.cfg
+├──<span class="w"> </span>archivos/
+│<span class="w">   </span>└──<span class="w"> </span>icon/
+│<span class="w">       </span>└──<span class="w"> </span>libro_contacto.ico
+├──<span class="w"> </span>docs/
+│<span class="w">   </span>├──<span class="w"> </span>source/
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>_static/
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>_templates/
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>conf.py
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>creador.jpg
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>creador.rst
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>estructura.rst
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>foto_aplicacion.png
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>index.rst
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>instalacion.rst
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>introduccion
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>modulos.rst
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>MVC.rst
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>observador.rst
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>red.rst
+│<span class="w">   </span>│<span class="w">   </span>└──<span class="w"> </span>uso.rst
+│<span class="w">   </span>├──<span class="w"> </span>build/
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>doctrees/
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>html/
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>epub/
+│<span class="w">   </span>│<span class="w">   </span>└──<span class="w"> </span>text/
+│<span class="w">   </span>├──<span class="w"> </span>make.bat
+│<span class="w">   </span>└──<span class="w"> </span>Makefile
+├──<span class="w"> </span>__pycache__/
+│<span class="w">   </span>├──<span class="w"> </span>controlador.cpython-310.pyc
+│<span class="w">   </span>├──<span class="w"> </span>expresiones.cpython-310.pyc
+│<span class="w">   </span>├──<span class="w"> </span>log.cpython-310.pyc
+│<span class="w">   </span>├──<span class="w"> </span>modelo.cpython-310.pyc
+│<span class="w">   </span>└──<span class="w"> </span>vista.cpython-310.pyc
+├──<span class="w"> </span>README.md
+├──<span class="w"> </span>requirements.txt
+└──<span class="w"> </span>python-version.txt
+</pre></div>
+</div>
+<ol class="arabic">
+<li><p><strong>controlador.py</strong>: Este módulo contiene la lógica del controlador que gestiona las interacciones entre el modelo y la vista.</p></li>
+<li><p><strong>cliente.py</strong>: Aquí se encuentra la implementación del cliente, que se encarga de interactuar con el servidor para enviar y recibir datos.</p></li>
+<li><p><strong>observador.py</strong>: Define la clase Observador que permite la implementación del patrón Observador para notificar cambios en el modelo.</p></li>
+<li><p><strong>modelo.py</strong>: Contiene las clases que definen el modelo de datos de la aplicación, incluyendo la lógica y el almacenamiento de la información en la base de datos SQLite3.</p></li>
+<li><p><strong>servidor.py</strong>: Implementa el servidor que maneja las solicitudes del cliente.</p></li>
+<li><p><strong>vista.py</strong>: Aquí se define la interfaz de usuario y la lógica de presentación de la información al usuario.</p></li>
+<li><p><strong>expresiones.py</strong>: Contiene funciones relacionadas con el manejo y validación de expresiones como direcciones de correo electrónico, números de teléfono y nombres.</p></li>
+<li><p><strong>main.py</strong>: Punto de entrada principal del programa.</p></li>
+<li><p><strong>docs/</strong>: Directorio que contiene la documentación del proyecto.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>source/</strong>: Directorio de origen de la documentación, que incluye los archivos fuente en formato reStructuredText.</p></li>
+<li><p><strong>build/</strong>: Directorio donde se genera la documentación en diferentes formatos, como HTML o PDF.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><strong>README.md</strong>: Archivo de README con información básica sobre el proyecto y cómo comenzar a utilizarlo.</p></li>
+<li><p><strong>requirements.txt</strong>: Archivo que lista todas las dependencias del proyecto y sus versiones correspondientes, facilitando su instalación en otros entornos.</p></li>
+<li><p><strong>env/</strong>: Carpeta del entorno virtual.</p></li>
+<li><p><strong>__pycache__/</strong>: Carpeta interna para el funciomaniento de Python.</p></li>
+</ol>
+<p>Esta estructura proporciona una organización clara y modular del código fuente, lo que facilita su mantenimiento y comprensión del mismo.</p>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  </body>
+</html>
